@@ -1,0 +1,388 @@
+{
+ "stage": "done",
+ "quick": false,
+ "seconds": 5.6,
+ "coverage": [
+  {
+   "a": 0.15,
+   "b": 0.02,
+   "max_coverage": 0,
+   "pixels": 0,
+   "resolved": false
+  },
+  {
+   "a": 0.3,
+   "b": 0.02,
+   "max_coverage": 0,
+   "pixels": 0,
+   "resolved": false
+  },
+  {
+   "a": 0.5,
+   "b": 0.02,
+   "max_coverage": 0,
+   "pixels": 0,
+   "resolved": false
+  },
+  {
+   "a": 0.15,
+   "b": 0.05,
+   "max_coverage": 1,
+   "pixels": 411,
+   "resolved": true
+  },
+  {
+   "a": 0.3,
+   "b": 0.05,
+   "max_coverage": 1,
+   "pixels": 67,
+   "resolved": true
+  },
+  {
+   "a": 0.5,
+   "b": 0.05,
+   "max_coverage": 1,
+   "pixels": 3,
+   "resolved": true
+  },
+  {
+   "a": 0.15,
+   "b": 0.1,
+   "max_coverage": 1,
+   "pixels": 1373,
+   "resolved": true
+  },
+  {
+   "a": 0.3,
+   "b": 0.1,
+   "max_coverage": 1,
+   "pixels": 443,
+   "resolved": true
+  },
+  {
+   "a": 0.5,
+   "b": 0.1,
+   "max_coverage": 1,
+   "pixels": 276,
+   "resolved": true
+  },
+  {
+   "a": 0.15,
+   "b": 0.2,
+   "max_coverage": 1,
+   "pixels": 3896,
+   "resolved": true
+  },
+  {
+   "a": 0.3,
+   "b": 0.2,
+   "max_coverage": 1,
+   "pixels": 1633,
+   "resolved": true
+  },
+  {
+   "a": 0.5,
+   "b": 0.2,
+   "max_coverage": 1,
+   "pixels": 1077,
+   "resolved": true
+  },
+  {
+   "a": 0.15,
+   "b": 0.35,
+   "max_coverage": 1,
+   "pixels": 7778,
+   "resolved": true
+  },
+  {
+   "a": 0.3,
+   "b": 0.35,
+   "max_coverage": 1,
+   "pixels": 4527,
+   "resolved": true
+  },
+  {
+   "a": 0.5,
+   "b": 0.35,
+   "max_coverage": 1,
+   "pixels": 3405,
+   "resolved": true
+  },
+  {
+   "a": 0.15,
+   "b": 0.5,
+   "max_coverage": 1,
+   "pixels": 11440,
+   "resolved": true
+  },
+  {
+   "a": 0.3,
+   "b": 0.5,
+   "max_coverage": 1,
+   "pixels": 8278,
+   "resolved": true
+  },
+  {
+   "a": 0.5,
+   "b": 0.5,
+   "max_coverage": 1,
+   "pixels": 6920,
+   "resolved": true
+  },
+  {
+   "a": 0.3,
+   "b": 0.65,
+   "max_coverage": 1,
+   "pixels": 12519,
+   "resolved": true
+  },
+  {
+   "a": 0.5,
+   "b": 0.65,
+   "max_coverage": 1,
+   "pixels": 11237,
+   "resolved": true
+  },
+  {
+   "a": 0.5,
+   "b": 0.8,
+   "max_coverage": 1,
+   "pixels": 15995,
+   "resolved": true
+  },
+  {
+   "a": 0.5,
+   "b": 0.866,
+   "max_coverage": 1,
+   "pixels": 17860,
+   "resolved": true
+  }
+ ],
+ "detailed": [
+  {
+   "a": 0.5,
+   "b": 0.866,
+   "grid_interior": 57121,
+   "grid_Rmin": 1333,
+   "jac": {
+    "n": 400,
+    "n_positive": 400,
+    "n_negative": 0,
+    "min_abs": 5.133147464286142e-05
+   },
+   "forward": {
+    "n": 30,
+    "m0_counts": {
+     "1": 30
+    },
+    "morse_ok": 60,
+    "morse_total": 60
+   },
+   "interval": {
+    "delta": 0.02,
+    "total_area": 0.41970999999999997,
+    "pos_area": 0.027788313964827737,
+    "neg_area": 0.37634165649414064,
+    "unresolved_area": 0.015580029541015623,
+    "n_pos_boxes": 17719,
+    "enclosure_overlap_max": 1431,
+    "enclosure_overlap_stats": {
+     "median": 615.0,
+     "frac_zero": 0.033008252063015754,
+     "median_Z_width": [
+      0.009575206118661195,
+      0.009576111676994348
+     ]
+    }
+   }
+  },
+  {
+   "a": 0.3,
+   "b": 0.4,
+   "grid_interior": 57121,
+   "grid_Rmin": 1125,
+   "jac": {
+    "n": 400,
+    "n_positive": 400,
+    "n_negative": 0,
+    "min_abs": 0.0013250404546261974
+   },
+   "forward": {
+    "n": 30,
+    "m0_counts": {
+     "1": 30
+    },
+    "morse_ok": 60,
+    "morse_total": 60
+   },
+   "interval": {
+    "delta": 0.02,
+    "total_area": 0.41970999999999997,
+    "pos_area": 0.021575501464830442,
+    "neg_area": 0.3852105541992187,
+    "unresolved_area": 0.012923944335937501,
+    "n_pos_boxes": 14425,
+    "enclosure_overlap_max": 2850,
+    "enclosure_overlap_stats": {
+     "median": 1378.0,
+     "frac_zero": 0.02311111111111111,
+     "median_Z_width": [
+      0.007029788554815369,
+      0.02070643434636732
+     ]
+    }
+   }
+  },
+  {
+   "a": 0.0,
+   "b": 0.5,
+   "grid_interior": 57121,
+   "grid_Rmin": 1192,
+   "jac": {
+    "n": 400,
+    "n_positive": 400,
+    "n_negative": 0,
+    "min_abs": 0.00031385575166496815
+   },
+   "forward": {
+    "n": 30,
+    "m0_counts": {
+     "1": 30
+    },
+    "morse_ok": 60,
+    "morse_total": 60
+   },
+   "interval": {
+    "delta": 0.02,
+    "total_area": 0.41970999999999997,
+    "pos_area": 0.02073310449217425,
+    "neg_area": 0.3862373940429688,
+    "unresolved_area": 0.012739501464843754,
+    "n_pos_boxes": 14516,
+    "enclosure_overlap_max": 2476,
+    "enclosure_overlap_stats": {
+     "median": 651.5,
+     "frac_zero": 0.034395973154362415,
+     "median_Z_width": [
+      0.0018155581438025967,
+      0.021077300028639334
+     ]
+    }
+   }
+  },
+  {
+   "a": 0.15,
+   "b": 0.2,
+   "grid_interior": 57121,
+   "grid_Rmin": 840,
+   "jac": {
+    "n": 400,
+    "n_positive": 400,
+    "n_negative": 0,
+    "min_abs": 7.156159206711532e-06
+   },
+   "forward": {
+    "n": 30,
+    "m0_counts": {
+     "1": 30
+    },
+    "morse_ok": 60,
+    "morse_total": 60
+   },
+   "interval": {
+    "delta": 0.02,
+    "total_area": 0.41970999999999997,
+    "pos_area": 0.011247239990235062,
+    "neg_area": 0.397141095703125,
+    "unresolved_area": 0.011321664306640626,
+    "n_pos_boxes": 10481,
+    "enclosure_overlap_max": 2332,
+    "enclosure_overlap_stats": {
+     "median": 1358.0,
+     "frac_zero": 0.0380952380952381,
+     "median_Z_width": [
+      0.0022342542404971827,
+      0.035941816026288986
+     ]
+    }
+   }
+  },
+  {
+   "a": 0.5,
+   "b": 0.1,
+   "grid_interior": 57121,
+   "grid_Rmin": 351,
+   "jac": {
+    "n": 351,
+    "n_positive": 351,
+    "n_negative": 0,
+    "min_abs": 1.70028894797003e-06
+   },
+   "forward": {
+    "n": 30,
+    "m0_counts": {
+     "1": 30
+    },
+    "morse_ok": 60,
+    "morse_total": 60
+   },
+   "interval": {
+    "delta": 0.02,
+    "total_area": 0.41970999999999997,
+    "pos_area": 0.006230609619141139,
+    "neg_area": 0.4055591330566407,
+    "unresolved_area": 0.007920257324218749,
+    "n_pos_boxes": 4989,
+    "enclosure_overlap_max": 3046,
+    "enclosure_overlap_stats": {
+     "median": 2909.0,
+     "frac_zero": 0.0,
+     "median_Z_width": [
+      0.018878676883921197,
+      0.01888775436971657
+     ]
+    }
+   }
+  },
+  {
+   "a": 0.25,
+   "b": 0.65,
+   "grid_interior": 57121,
+   "grid_Rmin": 1308,
+   "jac": {
+    "n": 400,
+    "n_positive": 400,
+    "n_negative": 0,
+    "min_abs": 0.001036540325110663
+   },
+   "forward": {
+    "n": 30,
+    "m0_counts": {
+     "1": 30
+    },
+    "morse_ok": 60,
+    "morse_total": 60
+   },
+   "interval": {
+    "delta": 0.02,
+    "total_area": 0.41970999999999997,
+    "pos_area": 0.026106216552719424,
+    "neg_area": 0.37938280664062496,
+    "unresolved_area": 0.014220976806640624,
+    "n_pos_boxes": 16673,
+    "enclosure_overlap_max": 2189,
+    "enclosure_overlap_stats": {
+     "median": 737.5,
+     "frac_zero": 0.024464831804281346,
+     "median_Z_width": [
+      0.005961913426283022,
+      0.015634348067588122
+     ]
+    }
+   }
+  }
+ ],
+ "max_coverage": 1,
+ "n_shapes": 22,
+ "n_resolved": 19
+}
