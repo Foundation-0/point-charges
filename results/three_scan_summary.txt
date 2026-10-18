@@ -1,0 +1,6 @@
+three_scan.py: 1289 triangle shapes (A1=(0,0), A2=(1,0), A3=(a,b); 0<=a<=1/2, |A2A3|<=1, b from 1e-4 to 0.87)
+max pixel coverage of Z(R_min) at the fine resolution: {0: 487, 1: 799, 2: 2, 3: 1}
+shapes with no resolved minimum region: 487 (smallest b with a resolved region: 0.00316)
+flagged shape a=0.080 b=0.04217: 1 pixel(s) covered >= 2; direct solve finds minima {0: 1} there; 30 singly covered pixels: minima {1: 30}
+flagged shape a=0.340 b=0.1: 1 pixel(s) covered >= 2; direct solve finds minima {1: 1} there; 30 singly covered pixels: minima {1: 30}
+flagged shape a=0.160 b=0.17: 1 pixel(s) covered >= 2; direct solve finds minima {0: 1} there; 30 singly covered pixels: minima {1: 30}
