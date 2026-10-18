@@ -6,7 +6,8 @@ except the certificates, which are rigorous.
 | run | script | configurations | outcome |
 |---|---|---|---|
 | certificates | `make_certs.py` | 4 | exactly 4, 9, 24, 29 equilibria, all non-degenerate (`make_certs.log`) |
-| independent check | `verify_arb.py` | 4 | all four re-verified (`verify_arb.log`) |
+| seven-charge certificate | `explore/second_pair.py` | 1 (second ABK pair; charge scan over $k/2^{60}$ at offset $1/2048$) | exactly 44 equilibria (19 index 1, 25 index 2), all non-degenerate; 44-count window $k \in [134615, 134812]$, centre $k=134713$ used; larger offsets $1/512$, $1/1024$ reach only 38 numerically. Float certifier does not finish on this configuration (issue #12) |
+| independent check | `verify_arb.py` | 5 | all five verified; seven-charge completeness 394,265 boxes (`verify_arb.log`) |
 | negative controls | `tests/test_verifier_rejects.py` | 4 corrupted | all rejected |
 | C3v coarse scan | `explore/scan_c3v.py` | 899 (h × log q grid) | counts 3: 258, 4: 239, 5: 369, 9: 33; maximum 9 |
 | C3v fine scan | `explore/scan_c3v_fine.py` | 2,928 (near the H2-cancelling charge) | counts 3: 1,272, 5: 942, 9: 714; maximum 9 |
