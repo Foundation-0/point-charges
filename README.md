@@ -61,3 +61,11 @@ earlier work are welcome as issues.
 This study started in [Foundation-0/physics0](https://github.com/Foundation-0/physics0), the hub for Foundation0's
 physics work. It moved here with its history once it outgrew the hub. The open problems it leaves are tracked
 as issues in this repository.
+
+## Licence
+
+Copyright 2026 Foundation0 contributors.
+
+Code (`*.py`, including `explore/` and `tests/`): [Apache License 2.0](LICENSE).
+Text and data (`NOTE.md`, this README, `certificates/` and `results/`):
+[Creative Commons Attribution 4.0 International](LICENSE-CC-BY-4.0) (CC BY 4.0).
