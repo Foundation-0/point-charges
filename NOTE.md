@@ -146,10 +146,18 @@ and reverses it on saddles. So for each triangle:
 
 > Maxwell's bound for three charges on this triangle $\iff$ $Z$ is one-to-one on $R_{\min}$.
 
-`explore/three_scan.py` checks this by rasterising $Z(R_{\min})$ on a fine grid of the charge simplex, over
-a grid of triangle shapes in the fundamental domain (longest side 1, heights down to $10^{-4}$). No point
-of the charge simplex was covered twice. See `results/three_scan_summary.txt` for the scan's extent and its
-limits: a grid cannot see a sliver thinner than its resolution.
+`explore/three_scan.py` checks this over 1,289 triangle shapes in the fundamental domain (longest side 1,
+heights from $10^{-4}$ to $0.87$). For each shape it rasterises $Z(R_{\min})$ onto a fine grid of the charge
+simplex and counts how often each pixel is covered.
+
+* In the 799 shapes where $R_{\min}$ is resolved, no charge ratio was covered twice, apart from three edge
+  pixels. `explore/three_scan_check.py` re-solved those three directly and found 0 or 1 minimum, never 2;
+  they are rasterisation artifacts at cusps of the fold image. Ninety sampled singly covered pixels all had
+  exactly one minimum.
+* In the other 487 shapes, mostly very flat triangles, no minimum region showed up at the grid's resolution.
+  For those the scan is weak evidence: a grid cannot see a sliver thinner than its resolution.
+
+Details are in `results/three_scan_summary.txt`.
 
 Random sampling of 16,049 three-charge configurations (log-uniform charge ratios over 8 decades) found 2
 with 4 equilibria and none with 6.
@@ -168,7 +176,8 @@ No configuration with more than 9 equilibria was found by any of these:
   distinct index-1 points sharing one charge vector (17 unknowns, 9 equations, 160 restarts). The residual
   never reached zero; the best runs flatten the tetrahedron and pull the points together, suggesting that
   the infimum is approached only in degenerate limits;
-* importance sampling through the same inverse map (`explore/sample4_inverse.py`).
+* importance sampling through the same inverse map (`explore/sample4_inverse.py`): 2,703 random tetrahedra
+  and 16,179 charge vectors, each with at least one 1-saddle. The counts were 5, 7 or 9, never more.
 
 Two local models explain why the natural designs stop where they do:
 

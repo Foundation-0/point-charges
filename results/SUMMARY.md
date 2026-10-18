@@ -17,3 +17,5 @@ except the certificates, which are rigorous.
 | ABK local model | `explore/local_poly.py` | 150 random (L, Q, C) | finite complex solutions 21 in 143 cases (fewer in 7: solver misses); ABK's coefficients give 21 real |
 | polygon + axial pair | `explore/kgon_pair.py` | k = 3..6 | best counts 24 (k=3, n=5), 13 (n=6), 16 (n=7), 19 (n=8) |
 | random three-charge sampling | `explore/three.py` | 16,049 | 0 minima: 16,047; 1 minimum: 2; 2 minima: none |
+| three-charge shape scan | `explore/three_scan.py`, `explore/three_scan_check.py` (log: `three_scan.log`) | 1,289 triangle shapes | no charge ratio covered twice by the minimum region in the 799 resolved shapes; 3 flagged edge pixels re-solved directly: 0 or 1 minimum (artifacts); 487 mostly flat shapes show no minimum region at grid resolution (`three_scan_summary.txt`) |
+| four-charge importance sampling | `explore/sample4_inverse.py` | 2,703 random tetrahedra, 16,179 charge vectors, each with at least one 1-saddle | Morse-consistent counts 5: 16,078, 7: 98, 9: 1; one run failed the Morse check and was discarded; maximum 9 (`sample4_inverse.log`) |

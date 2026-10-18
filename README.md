@@ -43,6 +43,7 @@ non-degenerate equilibrium and that nothing exists outside the boxes.
 | `verify_arb.py` | independent verifier: python-flint Arb balls and exact rationals |
 | `make_certs.py` | the four configurations, as exact rationals |
 | `charges.py` | fast numerical equilibrium finder used for exploration |
+| `export_page_data.py` | writes the data file for the Foundation0 page from the certificates |
 | `explore/` | the searches and local models behind NOTE.md §3 |
 | `results/` | logs and summaries of those runs |
 | `tests/` | interval arithmetic soundness, numerical reproductions, negative controls |
