@@ -49,7 +49,7 @@ Status before this note, as far as we know (October 2026):
 
 | $n$ | Maxwell $(n-1)^2$ | known lower bound | known upper bound |
 |---|---|---|---|
-| 3 | 4 | 4 (equilateral triangle) | 6 (GNNS, arXiv 2607.28785); 4 for equal charges (Tsai 2015) |
+| 3 | 4 | 4 (equilateral triangle) | 6 (GNNS, arXiv 2607.28785); 4 for equal charges (Tsai 2015) and in other special cases (Tsai 2011) |
 | 4 | 9 | none stated; EFO: no configuration attaining 9 known | finite (Enciso and Peralta-Salas, arXiv 2609.03965: at most 570 for $N=4$) |
 | 5 | 16 | 24 (ABK, arXiv 2607.27197) | finite |
 | 7 | 36 | 44 (ABK, Proposition 1, $m=2$) | finite |
@@ -267,7 +267,10 @@ have to trust the author, only the two verifiers, which are short enough to read
 
 * J. C. Maxwell, *A Treatise on Electricity and Magnetism*, vol. 1, §113, 1873.
 * A. Gabrielov, D. Novikov, B. Shapiro, Mystery of point charges, Proc. LMS 95 (2007) 443–472.
-* Y.-L. Tsai, Maxwell's conjecture on three point charges with equal magnitudes, Physica D 309 (2015) 86–98.
+* Y.-L. Tsai, Special cases of three point charges, Nonlinearity 24 (2011) 3299–3321,
+  doi:10.1088/0951-7715/24/12/002.
+* Y.-L. Tsai, Maxwell's conjecture on three point charges with equal magnitudes, Physica D 309 (2015) 86–98,
+  doi:10.1016/j.physd.2015.07.007.
 * V. Zolotov, Upper bounds for the number of isolated critical points via the Thom–Milnor theorem, Anal. Math.
   Phys. 13 (2023) 81.
 * H. Edelsbrunner, C. Fillmore, G. Oliveira, Counting equilibria of the electrostatic potential, Proc. LMS 132
