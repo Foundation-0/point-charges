@@ -1,4 +1,8 @@
-# Maxwell's point charges
+# point-charges
+
+*A [physics0](https://github.com/Foundation-0/physics0) project of Foundation0.*
+
+## Maxwell's point charges
 
 How many places of perfect balance can a handful of electric charges have? Put positive charges at fixed points
 in space. A test charge feels no force at the equilibria of the field, the critical points of the potential. In
@@ -53,3 +57,7 @@ non-degenerate equilibrium and that nothing exists outside the boxes.
 Done by Claude (an AI model by Anthropic) on 18 October 2026, at the request of Foundation0 founding member
 Ahraz Arifuddin. Not reviewed by a person. Novelty was checked by web search only. Corrections and pointers to
 earlier work are welcome as issues.
+
+This study started in [Foundation-0/physics0](https://github.com/Foundation-0/physics0), the hub for Foundation0's
+physics work. It moved here with its history once it outgrew the hub. The open problems it leaves are tracked
+as issues in this repository.

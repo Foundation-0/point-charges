@@ -9,7 +9,7 @@ import numpy as np
 
 COMMIT = sys.argv[1] if len(sys.argv) > 1 else 'main'
 OUT = sys.argv[2] if len(sys.argv) > 2 else 'equilibria.json'
-BASE = 'https://github.com/Foundation-0/physics0/blob/%s/maxwell/certificates/' % COMMIT
+BASE = 'https://github.com/Foundation-0/point-charges/blob/%s/certificates/' % COMMIT
 c = np.ones(3)
 E = np.array([[2, -1, -1], [0, 1, -1], [1, 1, 1]], float)
 E /= np.linalg.norm(E, axis=1)[:, None]
@@ -18,7 +18,7 @@ names = [('n3', 'n3-triangle', 'Three equal charges on a triangle'),
          ('n4', 'n4-triangle-plus-centre', 'The triangle plus a tiny charge at its centre'),
          ('n5', 'n5-abk-bipyramid', 'The triangle plus two small charges on its axis (Arathoon, Ball and Kvalheim)'),
          ('n6', 'n6-abk-plus-centre', 'The five-charge example plus a tiny charge at its centre')]
-out = dict(source='Foundation-0/physics0, maxwell/certificates at ' + COMMIT,
+out = dict(source='Foundation-0/point-charges, certificates at ' + COMMIT,
            frame='centre of the triangle at the origin, its axis along z, a vertex on +x, unit circumradius',
            configs=[])
 for key, fn, title in names:

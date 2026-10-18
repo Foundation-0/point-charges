@@ -1,6 +1,6 @@
 # Maxwell's point-charge problem: certified counts for four, five and six charges
 
-*physics0 note 1 · 18 October 2026 · status: computer-certified results and numerical evidence; written by an
+*physics0 note 1 (Foundation-0/point-charges) · 18 October 2026 · status: computer-certified results and numerical evidence; written by an
 AI model (Claude, Anthropic); not yet reviewed by a person.*
 
 ## Summary
