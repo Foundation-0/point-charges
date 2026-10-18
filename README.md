@@ -19,7 +19,9 @@ This study adds four computer-certified results and evidence on the open cases. 
 | 4 | 9 | **9**: the bound is reached (EFO 2026 knew of no example for $n>3$) | [n4-triangle-plus-centre.json](certificates/n4-triangle-plus-centre.json) |
 | 5 | 16 | **24**: an explicit ABK counterexample, every equilibrium enclosed | [n5-abk-bipyramid.json](certificates/n5-abk-bipyramid.json) |
 | 6 | 25 | **29**: Maxwell's bound fails for six charges too | [n6-abk-plus-centre.json](certificates/n6-abk-plus-centre.json) |
-| 7 | 36 | **44**: the second ABK iteration, completely counted | [n7-abk-second-pair.json](certificates/n7-abk-second-pair.json) |
+| 7 | 36 | **44** †: the second ABK iteration, completely counted | [n7-abk-second-pair.json](certificates/n7-abk-second-pair.json) |
+
+† Seven charges: proved by the independent verifier only for now (float certifier in issue #12).
 
 Evidence, not proof: no three-charge configuration with more than 4 equilibria, and no four-charge
 configuration with more than 9, turned up in the searches described in NOTE.md §3.

@@ -82,10 +82,12 @@ count is 24 (the ABK formula $\tfrac34\varepsilon^3-\tfrac5{32}\varepsilon^5$ gi
 
 $C_7$ repeats the construction at the centre of $C_5$ (ABK Remark 3 and Proposition 1). In circumradius
 units the second pair sits at $\eta = 1/(2048\sqrt2)\approx 0.000345$. The centre of $C_5$ has
-$\alpha \approx 0.00116$ and $\beta = 15/(8\sqrt6)$ in the expansion $U = U(0) + \alpha H_2 + \beta H_3 + O(4)$,
-so ABK's choice $q_\eta = \alpha\eta^3 - \gamma\eta^5$ with $\gamma = \beta^2/(30\alpha)$ predicts
-$q_7 \approx 1.168\times 10^{-13}$. A numerical scan at this $\eta$ finds the count 44 exactly for
-$q_7 = k/2^{60}$ with $134615 \le k \le 134812$; $C_7$ uses the centre of that window, $k = 134713$.
+$\alpha \approx 0.00284$ and $\beta = 15/8$ in the expansion $U = U(0) + \alpha H_2 + \beta H_3 + O(4)$
+(distances in circumradius units, charges unscaled, as in ABK),
+so ABK's choice $q_\eta = \alpha\eta^3 - \gamma\eta^5$ with $\gamma = \beta^2/(30\alpha)\approx 41.2$ predicts
+$q_7 \approx 1.168\times 10^{-13}$. A numerical scan at this $\eta$ finds the count 44 in a window of
+width about 200 for $q_7 = k/2^{60}$ (about $134615 \le k \le 134812$ by targeted count; the endpoints are
+finder-sensitive next to the bifurcation); $C_7$ uses the centre of that window, $k = 134713$.
 At larger second-pair scales the outer trio of the bifurcated cluster does not appear (the counts found
 at offsets $1/512$ and $1/1024$ per coordinate reach only 38), which matches the size of the degree-6
 correction at the outer cluster radius.
@@ -98,7 +100,9 @@ correction at the outer cluster radius.
 | $C_4$ | **9** | 3 | 6 | yes | 9 |
 | $C_5$ | **24** | 10 | 14 | yes | 16 |
 | $C_6$ | **29** | 12 | 17 | yes | 25 |
-| $C_7$ | **44** | 19 | 25 | yes | 36 |
+| $C_7$ | **44** † | 19 | 25 | yes | 36 |
+
+† $C_7$ is proved by the independent verifier only (Section 4; float certifier tracked in issue #12).
 
 "Equilibria" is the total number of critical points of $V$ in $\mathbb{R}^3$ minus the sites. Each certificate
 encloses every critical point in a box that contains exactly one, proves that the Hessian is non-singular

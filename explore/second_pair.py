@@ -1,14 +1,14 @@
 """Second ABK iteration (n=7): candidate search and Arb certificate builder.
 
 Design (ABK Remark 3 / Proposition 1, arXiv:2607.27197): the centre of C5 has, in
-circumradius-1 coordinates at the centre, alpha ~= 0.00116 and beta = 15/(8 sqrt(6)).
+circumradius units with charges unscaled (as in ABK), alpha ~= 0.00284 and beta = 15/8.
 A second axial pair at normalised distance eta with charge alpha*eta^3 - gamma*eta^5,
-gamma = beta^2/(30*alpha), bifurcates the centre equilibrium into the 21 critical
-points of the ABK local model, for a total of 24 - 1 + 21 = 44.
+gamma = beta^2/(30*alpha) ~= 41.2, bifurcates the centre equilibrium into the 21
+critical points of the ABK local model, for a total of 24 - 1 + 21 = 44.
 
 This script uses per-coordinate offset s = 1/2048 (eta = s/sqrt(2)) and charge
-q7 = 134713/2^60, the centre of the numerically found 44-count window
-k in [134615, 134812] for q7 = k/2^60 at this offset. It finds the equilibria with
+q7 = 134713/2^60, the centre of the numerically found 44-count window (about 200
+wide in k for q7 = k/2^60 at this offset; endpoints are finder-sensitive). It finds the equilibria with
 Newton iteration seeded from the C5 certificate points and the local-model cluster
 (local_poly.all_roots), builds a Krawczyk box around each zero in Arb arithmetic,
 tightens the enclosures exactly as verify_arb.py does, and writes
