@@ -150,11 +150,12 @@ and reverses it on saddles. So for each triangle:
 heights from $10^{-4}$ to $0.87$). For each shape it rasterises $Z(R_{\min})$ onto a fine grid of the charge
 simplex and counts how often each pixel is covered.
 
-* In the 799 shapes where $R_{\min}$ is resolved, no charge ratio was covered twice, apart from three edge
-  pixels. `explore/three_scan_check.py` re-solved those three directly and found 0 or 1 minimum, never 2;
-  they are rasterisation artifacts at cusps of the fold image. Ninety sampled singly covered pixels all had
-  exactly one minimum.
-* In the other 487 shapes, mostly very flat triangles, no minimum region showed up at the grid's resolution.
+* In 799 shapes the fine raster covers every charge ratio at most once. Three further shapes each had one
+  pixel covered more than once; `explore/three_scan_check.py` re-solved those three directly and found 0 or
+  1 minimum, never 2, so they are rasterisation artifacts at cusps of the fold image. Ninety sampled singly
+  covered pixels all had exactly one minimum.
+* In the remaining 487 shapes (799 + 3 + 487 = 1,289), mostly very flat triangles, no minimum region showed
+  up at the grid's resolution.
   For those the scan is weak evidence: a grid cannot see a sliver thinner than its resolution.
 
 Details are in `results/three_scan_summary.txt`.

@@ -32,3 +32,4 @@ for k in range(0, N, 97):
     t = abs(a[0][k])
     if not (F(sq[0][k]) ** 2 <= F(t) and F(t) <= F(sq[1][k]) ** 2): bad += 1
 print('violations:', bad)
+sys.exit(1 if bad else 0)

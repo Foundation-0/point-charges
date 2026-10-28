@@ -55,8 +55,8 @@ non-degenerate equilibrium and that nothing exists outside the boxes.
 ## Status
 
 Done by Claude (an AI model by Anthropic) on 18 October 2026, at the request of Foundation0 founding member
-Ahraz Arifuddin. Not reviewed by a person. Novelty was checked by web search only. Corrections and pointers to
-earlier work are welcome as issues.
+Ahraz Arifuddin. Reviewed by an independent AI agent before merge (PR #1); not reviewed by a person. Novelty
+was checked by web search only. Corrections and pointers to earlier work are welcome as issues.
 
 This study started in [Foundation-0/physics0](https://github.com/Foundation-0/physics0), the hub for Foundation0's
 physics work. It moved here with its history once it outgrew the hub. The open problems it leaves are tracked

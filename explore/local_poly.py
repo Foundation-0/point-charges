@@ -1,6 +1,7 @@
 """Local model behind ABK: Phi = L.X + Q(X) + C(X) + Z4(X), Z4 = 3 rho^4 - 24 rho^2 z^2 + 8 z^4.
-grad Phi = 0 is a cubic system with no zeros at infinity, so 27 complex solutions (Bezout).
-Count real ones; search (L, Q, C) to maximise."""
+grad Phi = 0 is a cubic system; Bezout allows 27 complex solutions, but the leading form
+(grad Z4) vanishes on the isotropic directions z = 0, x^2 + y^2 = 0, so some solutions sit
+at infinity and generically 21 are finite (see NOTE.md). Count real ones."""
 import os, sys; sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))  # noqa: E702
 import numpy as np
 
