@@ -17,7 +17,8 @@ R = np.sqrt(6)
 names = [('n3', 'n3-triangle', 'Three equal charges on a triangle'),
          ('n4', 'n4-triangle-plus-centre', 'The triangle plus a tiny charge at its centre'),
          ('n5', 'n5-abk-bipyramid', 'The triangle plus two small charges on its axis (Arathoon, Ball and Kvalheim)'),
-         ('n6', 'n6-abk-plus-centre', 'The five-charge example plus a tiny charge at its centre')]
+         ('n6', 'n6-abk-plus-centre', 'The five-charge example plus a tiny charge at its centre'),
+         ('n7', 'n7-abk-second-pair', 'The triangle plus two axial pairs at two scales (second ABK iteration)')]
 out = dict(source='Foundation-0/point-charges, certificates at ' + COMMIT,
            frame='centre of the triangle at the origin, its axis along z, a vertex on +x, unit circumradius',
            configs=[])

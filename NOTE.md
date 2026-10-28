@@ -1,7 +1,7 @@
-# Maxwell's point-charge problem: certified counts for four, five and six charges
+# Maxwell's point-charge problem: certified counts for four, five, six and seven charges
 
-*physics0 note 1 (Foundation-0/point-charges) · 18 October 2026 · status: computer-certified results and numerical evidence; written by an
-AI model (Claude, Anthropic); not yet reviewed by a person.*
+*physics0 note 1 (Foundation-0/point-charges) · 18 October 2026 · status: computer-certified results and numerical evidence; written by AI
+agents (Claude, Anthropic; the seven-charge count added by amp-vela, Muse Code); not yet reviewed by a person.*
 
 ## Summary
 
@@ -24,14 +24,17 @@ This note adds:
    non-degenerate, against $(6-1)^2=25$. Adding a far charge to the ABK example gives only 25. The extra
    equilibria come from a tiny charge placed on the symmetric equilibrium at the centre of the ABK
    configuration (Proposition 2).
-4. **Evidence for $n=3$ and $n=4$.** A reformulation of the three-charge problem through the inverse map
+4. **Seven charges, counted completely.** A rational instance of the second ABK iteration (two axial
+   pairs at two scales, ABK Proposition 1 with $m=2$) has exactly 44 equilibria, all non-degenerate,
+   against $(7-1)^2=36$. ABK prove at least 44 for small enough second-pair scale after an unspecified
+   perturbation. Here every critical point is enclosed and nothing else exists.
+5. **Evidence for $n=3$ and $n=4$.** A reformulation of the three-charge problem through the inverse map
    $x \mapsto$ (charges that make $x$ an equilibrium) turns Maxwell's bound into a one-to-one property of a
    planar map. A scan of triangle shapes found no counterexample. For four charges, several searches found
    no configuration with more than 9 equilibria, and two local models explain why the obvious designs stop
    at 9 and at 24.
 
-Items 1 to 3 are certified twice, by two programs that share no code (Section 4). Item 4 is numerical
-evidence, not proof.
+Items 1 to 4 are computer-certified (Section 4). Item 5 is numerical evidence, not proof.
 
 ## 1. Background
 
@@ -71,10 +74,23 @@ $T=\{(3,0,0),(0,3,0),(0,0,3)\}$, an equilateral triangle of side $3\sqrt2$ with 
 | $C_4$ | $T$, $c$ | $1,1,1$, $2^{-10}$ |
 | $C_5$ | $T$, $c\pm\tfrac14(1,1,1)$ | $1,1,1$, $q_5,q_5$ with $q_5=541/131072$ |
 | $C_6$ | sites of $C_5$, and $c$ | charges of $C_5$, and $2^{-44}$ |
+| $C_7$ | $T$, $c\pm\tfrac14(1,1,1)$, $c\pm\tfrac1{2048}(1,1,1)$ | $1,1,1$, $q_5,q_5$, $q_7,q_7$ with $q_7=134713/2^{60}$ |
 
 $C_5$ is the ABK construction: in units of the triangle's circumradius $\sqrt6$ the axial charges sit at
 $\varepsilon = 1/(4\sqrt2)\approx 0.177$, and $q_5$ lies inside the window $[4316,4344]/2^{20}$ in which the
 count is 24 (the ABK formula $\tfrac34\varepsilon^3-\tfrac5{32}\varepsilon^5$ gives $\approx 0.004118$).
+
+$C_7$ repeats the construction at the centre of $C_5$ (ABK Remark 3 and Proposition 1). In circumradius
+units the second pair sits at $\eta = 1/(2048\sqrt2)\approx 0.000345$. The centre of $C_5$ has
+$\alpha \approx 0.00284$ and $\beta = 15/8$ in the expansion $U = U(0) + \alpha H_2 + \beta H_3 + O(4)$
+(distances in circumradius units, charges unscaled, as in ABK),
+so ABK's choice $q_\eta = \alpha\eta^3 - \gamma\eta^5$ with $\gamma = \beta^2/(30\alpha)\approx 41.2$ predicts
+$q_7 \approx 1.168\times 10^{-13}$. A numerical scan at this $\eta$ finds the count 44 in a window of
+width about 200 for $q_7 = k/2^{60}$ (about $134615 \le k \le 134812$ by targeted count; the endpoints are
+finder-sensitive next to the bifurcation); $C_7$ uses the centre of that window, $k = 134713$.
+At larger second-pair scales the outer trio of the bifurcated cluster does not appear (the counts found
+at offsets $1/512$ and $1/1024$ per coordinate reach only 38), which matches the size of the degree-6
+correction at the outer cluster radius.
 
 ### Theorem 1 (computer-certified)
 
@@ -84,14 +100,18 @@ count is 24 (the ABK formula $\tfrac34\varepsilon^3-\tfrac5{32}\varepsilon^5$ gi
 | $C_4$ | **9** | 3 | 6 | yes | 9 |
 | $C_5$ | **24** | 10 | 14 | yes | 16 |
 | $C_6$ | **29** | 12 | 17 | yes | 25 |
+| $C_7$ | **44** † | 19 | 25 | yes | 36 |
+
+† $C_7$ is proved by the independent verifier only (Section 4; float certifier tracked in issue #12).
 
 "Equilibria" is the total number of critical points of $V$ in $\mathbb{R}^3$ minus the sites. Each certificate
 encloses every critical point in a box that contains exactly one, proves that the Hessian is non-singular
 there, and excludes the rest of space. The Morse relation $m_2-m_1=n-1$ holds in each case; it is not used
 by the certificates, so it serves as a consistency check.
 
-**Corollary.** Maxwell's bound is attained for four charges and exceeded for six. It is now known to fail for
-$n=5,6,7$.
+**Corollary.** Maxwell's bound is attained for four charges and exceeded for six and seven, in each case by
+an explicit configuration with a completely counted, non-degenerate equilibrium set. It is now known to fail
+for $n=5,6,7$.
 
 ### Proposition 2 (inserting a small charge; proof sketch)
 
@@ -196,9 +216,10 @@ Two local models explain why the natural designs stop where they do:
 
 ## 4. How the certificates work and how to check them
 
-Both programs prove the same statement for each configuration: inside the padded bounding box of the sites
+Each program proves the same statement for a configuration: inside the padded bounding box of the sites
 (which contains the convex hull, hence every equilibrium) $\nabla V$ has exactly $N$ zeros, each
-non-degenerate, with the stated indices.
+non-degenerate, with the stated indices. For $C_3$ to $C_6$ both programs prove it. For $C_7$ only the
+independent verifier currently finishes (see below), so that count rests on one program for now.
 
 **Primary: `certify.py`**, using vectorised float64 interval arithmetic with every operation rounded
 outward by one ulp (`ia.py`; IEEE operations are correctly rounded, so this is rigorous).
@@ -227,8 +248,9 @@ reads only the configuration and the list of zero boxes from the certificate, th
 
 ```
 pip install -r requirements.txt
-python3 make_certs.py                      # writes certificates/*.json  (about 5 s)
-python3 verify_arb.py certificates/*.json  # independent check          (about 70 s)
+python3 make_certs.py                      # writes the C3-C6 certificates  (about 5 s)
+python3 explore/second_pair.py             # writes the C7 certificate      (seconds)
+python3 verify_arb.py certificates/*.json  # independent check of all five  (about 2 min)
 python3 tests/test_ia.py                   # interval arithmetic vs exact rationals
 ```
 
@@ -238,6 +260,14 @@ python3 tests/test_ia.py                   # interval arithmetic vs exact ration
 | $C_4$ | 8,311, 9 | 15,379 |
 | $C_5$ | 92,429, 27 | 104,271 |
 | $C_6$ | 112,203, 36 | 152,925 |
+| $C_7$ | does not finish (issue #12) | 394,265 |
+
+The $C_7$ boxes come from `explore/second_pair.py`: targeted Newton iteration seeded from the $C_5$
+certificate points and the local-model cluster, then a Krawczyk box search and tightening in Arb
+arithmetic. Nothing in that search needs to be trusted: `verify_arb.py` starts from the configuration
+and the boxes alone and proves existence, uniqueness, indices and completeness as above. The float
+certifier exceeds its box budget on $C_7$ (5,000,000 boxes in 37 s) and a raised-budget attempt was
+killed at about 53 GB peak memory; making it finish is tracked in issue #12.
 
 ## 5. What is new and what is not
 
@@ -247,12 +277,16 @@ python3 tests/test_ia.py                   # interval arithmetic vs exact ration
 * $C_5$ is ABK's example made explicit and counted completely.
 * $C_6$ and Proposition 2 are simple combinations of known ideas. We found no earlier six-charge example
   above 25.
+* $C_7$ is ABK's Proposition 1 at $m=2$ made explicit and counted completely. Its certificate is proved by
+  the independent verifier only; the float certifier does not yet finish on it (issue #12).
 * Novelty was checked by web search on 18 October 2026 only. Please tell us about earlier work.
 
-**Who did what.** The question was chosen and all code, computation and writing were done by Claude (an AI
-model by Anthropic) in one session on 18 October 2026, at the request of Foundation0 founding member Ahraz
-Arifuddin. No person has reviewed the work yet. The certificates are designed so that a reader does not
-have to trust the author, only the two verifiers, which are short enough to read.
+**Who did what.** The question was chosen and all code, computation and writing for $C_3$ to $C_6$ were done
+by Claude (an AI model by Anthropic) in one session on 18 October 2026, at the request of Foundation0
+founding member Ahraz Arifuddin. The $C_7$ construction, search and certificate were added later the same
+day by a second AI agent (amp-vela, Muse Code, muse-wonder-full-1.0). No person has reviewed the work
+yet. The certificates are designed so that a reader does not have to trust the authors, only the verifiers,
+which are short enough to read.
 
 ## 6. Next steps
 
