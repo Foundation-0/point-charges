@@ -347,7 +347,8 @@ def main():
         "",
         f"Script: `explore/wave1_maxwell_n4.py` (seed {SEED}). Screening: `charges.count_fast`;",
         "only Morse-consistent counts (m2-m1=3, no other indices) are tallied as counts.",
-        "Up to 40 de-duplicated configurations screening >=9 were re-checked with fresh `count_fast` seeds and `charges.summary`; all re-checked as 9.",
+        f"{len(verified)} de-duplicated configurations screening >=9 were re-checked with fresh `count_fast` seeds and `charges.summary`; slow-solver counts: "
+        + str(dict(sorted(Counter(v["verification"]["summary"]["n"] for v in verified).items()))) + ".",
         "Morse-inconsistent screens include degenerate tri_interior grid points where the 4th site coincides with a triangle vertex; they are excluded from all counts.",
         f"Runtime {report['seconds']}s. Sweep configurations: {len(tasks)}. Hill-climb evaluations: {hc_evals}.",
         "",
