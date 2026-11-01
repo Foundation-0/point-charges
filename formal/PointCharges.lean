@@ -3,6 +3,8 @@ import Mathlib
 /- Statement definitions only. No Maxwell bound or certificate count is proved. -/
 namespace PointCharges
 
+noncomputable section
+
 abbrev Space := EuclideanSpace ℝ (Fin 3)
 
 def potential {n : ℕ} (sites : Fin n → Space) (charges : Fin n → ℝ) (x : Space) : ℝ :=
@@ -21,5 +23,7 @@ def exactlyEquilibria {n : ℕ} (sites : Fin n → Space) (charges : Fin n → �
 -- This names the historical proposed bound. It is not asserted as a theorem.
 def maxwellBoundFor {n : ℕ} (sites : Fin n → Space) (charges : Fin n → ℝ) : Prop :=
   ∀ count, exactlyEquilibria sites charges count → count ≤ (n - 1) ^ 2
+
+end
 
 end PointCharges
