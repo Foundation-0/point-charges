@@ -1,0 +1,25 @@
+{
+    "creators": [
+        {
+            "name": "Arifuddin, Ahraz"
+        }
+    ],
+    "title": "point-charges",
+    "description": "<p>This study reports computer-certified counts of equilibrium points of the electrostatic potential of a handful of point charges, compared with Maxwell's 1873 bound of at most (n-1)^2 points.</p><p>Exact counts, all non-degenerate, are 4 for 3 charges, 9 for 4 charges, 24 for 5 charges, 29 for 6 charges, and 44 for 7 charges, the last proved by the independent verifier only for now.</p><p>Evidence, not proof: no three-charge configuration with more than 4 equilibria, and no four-charge configuration with more than 9, turned up in the searches described in the notes. The work was not reviewed by a person.</p><p>Directed by Ahraz Arifuddin</p><p>Researched and verified by different model families across Gemini, Claude, Grok, OpenAI, and Muse</p>",
+    "upload_type": "software",
+    "license": "Apache-2.0",
+    "keywords": [
+        "electrostatics",
+        "foundation-0",
+        "physics",
+        "point-charges"
+    ],
+    "related_identifiers": [
+        {
+            "identifier": "https://github.com/Foundation-0/point-charges",
+            "relation": "isSupplementTo",
+            "scheme": "url",
+            "resource_type": "software"
+        }
+    ]
+}
