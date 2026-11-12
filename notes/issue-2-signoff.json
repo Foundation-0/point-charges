@@ -1,0 +1,20 @@
+{
+  "issue": 2,
+  "status": "awaiting-human-review",
+  "recipient_scope": "An independent mathematical reviewer",
+  "required_evidence": "ia.py; certify.py; verify_arb.py; certificates/; NOTE.md; requirements.txt; exact reviewed commit.",
+  "signoffs": [
+    {
+      "reviewer": null,
+      "commit": null,
+      "interval_soundness": null,
+      "krawczyk": null,
+      "completeness": null,
+      "distinctness": null,
+      "morse_indices": null,
+      "proof_sketch": null,
+      "prior_art": null,
+      "decision": null
+    }
+  ]
+}
