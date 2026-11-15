@@ -19,6 +19,15 @@ from flint import arb, fmpq, ctx
 ctx.prec = 160
 
 
+class VerificationError(Exception):
+    """A proof step failed. Raised explicitly, so it is not removed by python -O (unlike assert)."""
+
+
+def require(condition, message):
+    if not condition:
+        raise VerificationError(message)
+
+
 def Q(x):
     f = Fraction(x) if not isinstance(x, str) else Fraction(x)
     return fmpq(f.numerator, f.denominator)
@@ -177,7 +186,7 @@ def verify(path):
     for z in cert['zeros']:
         lo = [Q(x) for x in z['box'][0]]; hi = [Q(x) for x in z['box'][1]]
         ok, K = krawczyk(cfg, lo, hi)
-        assert ok, 'Krawczyk failed for %s' % z
+        require(ok, 'Krawczyk failed for %s' % z)
         # Every zero in a box X lies in K(X); iterate X <- X cap K(X) (rounded outward)
         # to get our own tight enclosure E of the unique zero of the box.
         elo, ehi = lo, hi
@@ -187,18 +196,18 @@ def verify(path):
                 break
             nlo = [max(elo[k], Q(_dn(K[k]))) for k in range(3)]
             nhi = [min(ehi[k], Q(_up(K[k]))) for k in range(3)]
-            assert all(nlo[k] <= nhi[k] for k in range(3)), 'empty intersection: no zero?'
+            require(all(nlo[k] <= nhi[k] for k in range(3)), 'empty intersection: no zero?')
             if nlo == elo and nhi == ehi:
                 break
             elo, ehi = nlo, nhi
         idx = morse_index(cfg, elo, ehi)
-        assert idx == z['index'], 'index mismatch %s vs %s' % (idx, z['index'])
+        require(idx == z['index'], 'index mismatch %s vs %s' % (idx, z['index']))
         boxes.append((lo, hi, elo, ehi, idx))
     # distinct zeros: the enclosures are pairwise disjoint
     for i in range(len(boxes)):
         for j in range(i + 1, len(boxes)):
             e1, e2 = boxes[i], boxes[j]
-            assert any(e1[3][k] < e2[2][k] or e2[3][k] < e1[2][k] for k in range(3)), 'enclosures %d, %d overlap' % (i, j)
+            require(any(e1[3][k] < e2[2][k] or e2[3][k] < e1[2][k] for k in range(3)), 'enclosures %d, %d overlap' % (i, j))
     print('  %d zero boxes verified (%.1fs)' % (len(boxes), time.time() - t0), flush=True)
     # completeness
     import math
@@ -237,12 +246,12 @@ def verify(path):
         m = (lo[k] + hi[k]) / 2
         hi1 = list(hi); hi1[k] = m; lo2 = list(lo); lo2[k] = m
         stack.append((lo, hi1)); stack.append((lo2, hi))
+    require(len(boxes) == cert['count'], 'certificate claims %s zeros but %d boxes were verified' % (cert['count'], len(boxes)))
     idx = [b[4] for b in boxes]
     m1, m2 = idx.count(1), idx.count(2)
     print('  completeness: %d boxes %s (%.1fs)' % (nbox, leaves, time.time() - t0))
     print('VERIFIED %s: exactly %d zeros, all non-degenerate; index 1: %d, index 2: %d; m2-m1 = %d = n-1: %s'
           % (cert['name'], len(boxes), m1, m2, m2 - m1, m2 - m1 == cfg.n - 1))
-    assert len(boxes) == cert['count']
     return len(boxes), m1, m2
 
 
