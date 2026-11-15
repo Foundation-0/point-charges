@@ -161,3 +161,27 @@ certificates/n9-abk-third-pair.json
   completeness: 915205 boxes {'natural': 38448, 'centred': 418425, 'dominance': 404, 'inside': 326} (272.3s)
 VERIFIED n9-abk-third-pair: exactly 64 zeros, all non-degenerate; index 1: 28, index 2: 36; m2-m1 = 8 = n-1: True
 [exit status 0]
+
+# the five-decimal certificate, added after the run above
+
+$ python3 verify_arb.py certificates/n4-eleven-short.json
+  11 zero boxes verified (0.4s)
+  completeness: 47145 boxes {'natural': 1269, 'centred': 22114, 'dominance': 87, 'inside': 103} (25.5s)
+VERIFIED n4-eleven-short: exactly 11 zeros, all non-degenerate; index 1: 4, index 2: 7; m2-m1 = 3 = n-1: True
+[exit status 0]
+
+$ python3 -O verify_arb.py certificates/n4-eleven-short.json
+  11 zero boxes verified (0.3s)
+  completeness: 47145 boxes {'natural': 1269, 'centred': 22114, 'dominance': 87, 'inside': 103} (26.6s)
+VERIFIED n4-eleven-short: exactly 11 zeros, all non-degenerate; index 1: 4, index 2: 7; m2-m1 = 3 = n-1: True
+[exit status 0]
+
+$ python3 -I -O indep_count.py certificates/n4-eleven-short.json
+RESULT certificates/n4-eleven-short.json: count=11 index1=4 index2=7 m2-m1=3 n-1=3 {'boxes': 32721, 'L1': 349, 'L2': 103, 'T1': 536, 'T2': 27171, 'Z': 472, 'newton_tries': 3764, 'max_level': 18, 'seconds': 33.3}
+AGREES with claimed count 11
+[exit status 0]
+
+$ python3 -I -O lower_bound_check.py certificates/n4-eleven-short.json 11
+PROVED: at least 11 non-degenerate balance points; index 2: 7, index 1: 4; index-2 minus index-1 = 3, charges minus one = 3
+OK
+[exit status 0]

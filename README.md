@@ -17,7 +17,7 @@ This study adds four computer-certified results and evidence on the open cases. 
 |---|---|---|---|
 | 3 | 4 | 4 (sanity check: the equilateral triangle) | [n3-triangle.json](certificates/n3-triangle.json) |
 | 4 | 9 | **9**: the bound is reached (EFO 2026 knew of no example for $n>3$) | [n4-triangle-plus-centre.json](certificates/n4-triangle-plus-centre.json) |
-| 4 | 9 | **11**: Maxwell's bound fails for four charges. Claimed. Exactly 11 equilibria (7 of index 2, 4 of index 1), proved by separately written checkers, in two configurations built by two methods. See [the note](results/2026-11-15-four-charges-eleven.md) | [n4-eleven-jet.json](certificates/n4-eleven-jet.json), [n4-eleven-flat.json](certificates/n4-eleven-flat.json) |
+| 4 | 9 | **11**: Maxwell's bound fails for four charges. Claimed. Exactly 11 equilibria (7 of index 2, 4 of index 1), proved by separately written checkers, in two configurations built by two methods, and in a third with coordinates of five decimal places. See [the note](results/2026-11-15-four-charges-eleven.md) | [n4-eleven-jet.json](certificates/n4-eleven-jet.json), [n4-eleven-flat.json](certificates/n4-eleven-flat.json), [n4-eleven-short.json](certificates/n4-eleven-short.json) |
 | 5 | 16 | **24**: an explicit ABK counterexample, every equilibrium enclosed | [n5-abk-bipyramid.json](certificates/n5-abk-bipyramid.json) |
 | 6 | 25 | **29**: Maxwell's bound fails for six charges too | [n6-abk-plus-centre.json](certificates/n6-abk-plus-centre.json) |
 | 7 | 36 | **44** †: the second ABK iteration, completely counted | [n7-abk-second-pair.json](certificates/n7-abk-second-pair.json) |
@@ -46,7 +46,7 @@ python3 tests/test_verifier_rejects_O.py   # the same under python -O: a bare as
 python3 indep_count.py certificates/n4-triangle-plus-centre.json   # third checker; reads only sites and charges
 python3 tests/test_indep_count.py          # third checker accepts and rejects as it should, about 15 s
 python3 -O lower_bound_check.py certificates/n4-eleven-flat.json 11   # fourth checker: proves at least 11, about 12 s
-python3 tests/test_four_eleven.py          # the 11-charge certificates: accepted, and corrupted inputs rejected, about 1 min
+python3 tests/test_four_eleven.py          # the four-charge certificates with 11 equilibria: accepted, and corrupted inputs rejected, about 1 min
 sh results/four-eleven/run_programs.sh     # rebuilds both 11-point configurations from the programs in explore/four_eleven/, about 15 min
 ```
 

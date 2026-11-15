@@ -1,4 +1,5 @@
-"""Tests for the four-charge certificates with 11 balance points (n4-eleven-jet.json and n4-eleven-flat.json).
+"""Tests for the four-charge certificates with 11 balance points (n4-eleven-jet.json, n4-eleven-flat.json and
+n4-eleven-short.json).
 
 Every program runs under python -O in a fresh process. Checked here:
   - lower_bound_check.py proves at least 11 on both certificates and stops with an error when asked for 12;
@@ -16,7 +17,7 @@ from fractions import Fraction
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
-NAMES = ['n4-eleven-jet', 'n4-eleven-flat']
+NAMES = ['n4-eleven-jet', 'n4-eleven-flat', 'n4-eleven-short']
 ok = True
 
 

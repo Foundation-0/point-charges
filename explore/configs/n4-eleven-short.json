@@ -1,0 +1,33 @@
+{
+ "name": "n4-eleven-short",
+ "note": "four charges with coordinates of five decimal places: the flat-route configuration made sturdier by explore/four_eleven/fatten.py and fatten2.py, then rounded",
+ "sites": [
+  [
+   "-1759/5000",
+   "-27373/100000",
+   "-4033/20000"
+  ],
+  [
+   "-2821/50000",
+   "1394/3125",
+   "-5359/25000"
+  ],
+  [
+   "-137/50000",
+   "141/20000",
+   "16917/20000"
+  ],
+  [
+   "20431/50000",
+   "-4351/25000",
+   "-19749/100000"
+  ]
+ ],
+ "charges": [
+  "3339/12500",
+  "2801/10000",
+  "1",
+  "13137/50000"
+ ],
+ "count": 11
+}

@@ -14,6 +14,32 @@ two exact programs prove the count is exactly 11, and a third program proves it 
 Status: claimed in this repository's terms. In the terms of the review that found it, VERIFIED, meaning separately written
 programs accept it. Nobody outside the project has checked it.
 
+## A short certificate
+
+[F] The flat-route configuration was made sturdier and then rounded to five decimal places. It still has exactly 11 balance points, by `verify_arb.py`, `indep_count.py` and `lower_bound_check.py`. Certificate: `certificates/n4-eleven-short.json`. Plain sites and charges: `explore/configs/n4-eleven-short.json`.
+
+| Charge | x | y | z |
+|---|---|---|---|
+| 0.26712 | -0.35180 | -0.27373 | -0.20165 |
+| 0.28010 | -0.05642 | 0.44608 | -0.21436 |
+| 1 | -0.00274 | 0.00705 | 0.84585 |
+| 0.26274 | 0.40862 | -0.17404 | -0.19749 |
+
+The 11 balance points, to five decimals, with their index:
+
+```
+(-0.00021, +0.00022, +0.00155)  2      (-0.00540, +0.00212, -0.00514)  2
+(+0.00014, -0.00055, -0.00251)  1      (+0.00583, -0.00243, +0.00455)  1
+(+0.00041, -0.00328, -0.00342)  2      (+0.01945, -0.00805, +0.01529)  2
+(+0.00395, +0.00287, -0.00454)  2      (-0.01747, -0.01312, +0.01561)  2
+(-0.00487, -0.00360, +0.00427)  1      (-0.00307, +0.02304, +0.01606)  2
+(-0.00088, +0.00615, +0.00431)  1
+```
+
+Anyone can test a listed point with a few lines of code: the field there is zero to the digits shown, and the signs of the three Hessian eigenvalues give the index. Rounding to four decimals leaves 9 and to three leaves 5.
+
+[F] It was made by two numerical climbs, `explore/four_eleven/fatten.py` and `fatten2.py`, which move the sites and charges so that the smallest Hessian eigenvalue among the 11 points grows, and then `short_cert.py`. The climbs are a search only. The certificate stands on its own. It survives relative changes of about 1e-6, ten times more than the flat-route configuration.
+
 ## The two configurations
 
 | | Jet route | Flat route |
@@ -104,7 +130,9 @@ The derivation is in the header of `explore/four_eleven/flat_param.py`. The same
 
 [I] **The rest of the configuration.** The gradient of a cubic is a quadratic map. Its local algebra has graded pieces of size 1, 3, 3, 1 and pairs degree k with degree 3 - k, so its signature is 0. The local degree of a flat point is therefore 0. The other balance points must then satisfy index-2 minus index-1 = 3 on their own, so there are at least 3 of them.
 
-[F] So an all-real unfolding of one flat point gives at least 8 + 3 = 11. `explore/four_eleven/realise.py` turns a hit of the cubic model into an actual configuration by Newton steps on the 8 conditions, and `rationalise.py` writes it as 14-digit fractions. The first hit tried gave 11 at three scales. In the certified one, 4 points of each index lie near the flat point and 3 of index 2 lie further out. The chain from the scan to the configuration is reproduced exactly by `results/four-eleven/run_programs.sh`.
+[F] So an all-real unfolding of one flat point gives at least 8 + 3 = 11. `explore/four_eleven/realise.py` turns a hit of the cubic model into an actual configuration by Newton steps on the 8 conditions, and `rationalise.py` writes it as 14-digit fractions. The first hit tried gave 11 at three scales.
+
+[F] In the certified one, 4 points of each index lie near the flat point and 3 of index 2 lie further out. The chain from the scan to the configuration is reproduced exactly by `results/four-eleven/run_programs.sh`.
 
 ## Walls
 

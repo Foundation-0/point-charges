@@ -1,10 +1,10 @@
 #!/bin/sh
-# Checks of the two four-charge certificates with 11 balance points, and the whole test set.
+# Checks of the three four-charge certificates with 11 balance points, and the whole test set.
 # Run it from the repository root: sh results/four-eleven/run_checks.sh > results/four-eleven/checks.log 2>&1
 # Needs python-flint, NumPy and SciPy. Total time: about 20 minutes.
 PY=${PY:-python3}
 run() { echo; echo "\$ $*" | sed "s|^\$ $PY|\$ python3|"; "$@"; echo "[exit status $?]"; }
-for n in n4-eleven-jet n4-eleven-flat; do
+for n in n4-eleven-jet n4-eleven-flat n4-eleven-short; do
   run $PY verify_arb.py certificates/$n.json
   run $PY -O verify_arb.py certificates/$n.json
   run $PY -I -O indep_count.py certificates/$n.json
