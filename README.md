@@ -63,6 +63,7 @@ An argument in four steps, with a proof sketch, says balance points can grow lik
 
 ```
 python3 explore/growth/levels_check.py     # the level counts, with a separately written program
+python3 -O explore/growth/stack_check.py 6 maxcoef 200   # stacked levels: 41 critical points proved, about 5 min
 python3 -I -O lower_bound_hp.py explore/configs/growth-flat-d5-n9.json explore/growth/data/n9_candidates.npy 26
 python3 tests/test_lower_bound_hp.py       # add --slow for the 21-charge case (several minutes)
 ```

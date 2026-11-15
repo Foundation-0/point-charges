@@ -13,6 +13,7 @@ cd .work
 $PY $E/kelvin_check.py > $O/kelvin_check.out
 $PY $E/platonic.py > $O/platonic.out
 $PY $E/levels_check.py > $O/levels_check.out
+for d in 3 4 5 6; do $PY -O $E/stack_check.py $d maxcoef 200 > $O/stack_check_D$d.out; done
 $PY $E/hier.py 0.01 10 > $O/hier_s0.01.out
 $PY $E/level.py > $O/level.out
 $PY $E/nflat.py 4 6 40 > $O/nflat_d4.out

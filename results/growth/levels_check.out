@@ -9,8 +9,3 @@ check 1: one level
   p = 10: directions found 49; claimed I_p - 1 = 49; largest relative residual 5.4e-15; smallest eigenvalue ratio 0.091; index 2: 25, index 1: 24
   p = 11: directions found 61; claimed I_p - 1 = 61; largest relative residual 5.9e-15; smallest eigenvalue ratio 0.083; index 2: 30, index 1: 31
   p = 12: directions found 71; claimed I_p - 1 = 71; largest relative residual 8.8e-15; smallest eigenvalue ratio 0.077; index 2: 36, index 1: 35
-check 2: stacked levels (extended precision Newton)
-  D = 3, ratio 0.01: real critical points found 6; claimed 6; by scale (outermost first) [0, 5, 1]
-  D = 4, ratio 0.01: real critical points found 13; claimed 13; by scale (outermost first) [0, 7, 5, 1]
-  D = 5, ratio 0.01: real critical points found 24; claimed 24; by scale (outermost first) [0, 11, 7, 5, 1]
-ALL CHECKS PASSED

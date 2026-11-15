@@ -1,4 +1,5 @@
-"""Separate check of two counts claimed in the growth note (results/2026-11-15-growth-n-three-halves.md), with programs written apart from the search.
+"""Separate check of the one-level count in the growth note (results/2026-11-15-growth-n-three-halves.md), with a
+program written apart from the search.
 
 1. One level. A = zonal harmonic of degree p about the z axis, B = zonal harmonic of degree p - 1 about the x axis.
    Claim: A + B has exactly I_p - 1 real non-degenerate critical points away from the origin, with
@@ -6,14 +7,9 @@
    Method here: a critical point x = t w (w a unit vector) needs grad A(w) parallel to grad B(w), and then
    t = -(grad A . grad B) / |grad A|^2 is fixed. So the critical points away from 0 are the directions, up to sign,
    where the cross product of the two gradients vanishes. Those are found by Newton on the sphere from many starts.
-2. Stacked levels. P = sum_{k=1..D} c_k Z_k with the axes alternating z, x and the levels at radius ratio s.
-   Claim: P has exactly sum_{p=2..D} (I_p - 1) real critical points: 6, 13, 24, 41, 66 for D = 3..7.
-   Method here: Newton in three dimensions in extended precision from starts spread over every scale.
-   Claimed and checked here for D = 3, 4 and 5 only. At D = 6 this program's search reported 59 points against 41 (the
-   extra points are not understood and are not claimed). The separate program hier.py finds 41 at D = 6.
-Every mismatch within the claimed range stops the program with a nonzero exit status."""
+The stacked levels are checked by stack_check.py, with exact coefficients and a proof for every point.
+A mismatch stops the program with a nonzero exit status."""
 import numpy as np, sys
-def die(m): raise SystemExit('FAIL: ' + m)
 from numpy.polynomial import legendre as Lg
 rng = np.random.default_rng(0)
 I = lambda p: p * p // 2 + (2 if p % 4 == 3 else 0)
@@ -55,34 +51,7 @@ for p in range(3, 13):
     gA, HA = zonal_gh(X, p, 2); gB, HB = zonal_gh(X, p - 1, 0); H = HA + HB; ev = np.abs(np.linalg.eigvalsh(H))
     resid = np.linalg.norm(gA + gB, axis=1) / (np.linalg.norm(gA, axis=1) + 1e-300)
     idx = (np.linalg.eigvalsh(H) < 0).sum(1)
-    if len(dirs) != I(p) - 1: die(f'p = {p}: found {len(dirs)} directions, claimed {I(p) - 1}')
+    if len(dirs) != I(p) - 1: raise SystemExit(f"FAIL: p = {p}: found {len(dirs)}, expected {I(p) - 1}")
     print(f"  p = {p:2d}: directions found {len(dirs)}; claimed I_p - 1 = {I(p) - 1}; largest relative residual {resid.max():.1e}; smallest eigenvalue ratio {(ev.min(1) / ev.max(1)).min():.3f}; index 2: {(idx == 2).sum()}, index 1: {(idx == 1).sum()}")
-print("check 2: stacked levels (extended precision Newton)")
-import mpmath as mp
-mp.mp.dps = 60
-def stacked(D, s):
-    lv = [(k, 2 if (D - k) % 2 == 0 else 0, mp.mpf(s) ** ((D - k) * (D - k + 1) // 2)) for k in range(1, D + 1)]
-    def P(x, y, z):
-        r = mp.sqrt(x * x + y * y + z * z); tot = mp.mpf(0)
-        for k, ax, c in lv: tot += c * r ** k * mp.legendre(k, (x, y, z)[ax] / r)
-        return tot
-    return P, lv
-for D in range(3, 6):
-    s = 0.01; P, lv = stacked(D, s)
-    g = lambda x, y, z: [mp.diff(P, (x, y, z), d) for d in ((1, 0, 0), (0, 1, 0), (0, 0, 1))]
-    found = []
-    for level in range(0, D - 1):
-        rad = s ** level
-        for trial in range(260):
-            v = rng.normal(size=3); v *= rad * 10 ** rng.uniform(-1.2, 0.6) / np.linalg.norm(v)
-            try: sol = mp.findroot(lambda x, y, z: g(x, y, z), tuple(mp.mpf(float(t)) for t in v), tol=1e-40, maxsteps=40)
-            except Exception: continue
-            x = np.array([float(t) for t in sol]); nx = np.linalg.norm(x)
-            if not np.isfinite(nx) or nx < 1e-30 or nx > 50: continue
-            if all(np.linalg.norm(x - f) > 1e-6 * max(nx, np.linalg.norm(f)) for f in found): found.append(x)
-    radii = np.sort([np.linalg.norm(f) for f in found])
-    groups = [int(((radii > s ** (j + 0.5)) & (radii <= s ** (j - 0.5))).sum()) for j in range(0, D)]
-    claimed = sum(I(p) - 1 for p in range(2, D + 1))
-    print(f"  D = {D}, ratio {s}: real critical points found {len(found)}; claimed {claimed}; by scale (outermost first) {groups}", flush=True)
-    if len(found) != claimed: die(f'D = {D}: found {len(found)}, claimed {claimed}')
-print('ALL CHECKS PASSED')
+# Check 2, the stacked levels, is in stack_check.py. An earlier version of it lived here and used numerical
+# derivatives inside a root finder. At six levels it counted poorly converged points twice (59 where 41 is right).
