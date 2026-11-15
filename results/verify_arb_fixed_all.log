@@ -1,0 +1,32 @@
+certificates/n3-triangle.json
+  4 zero boxes verified (0.1s)
+  completeness: 3563 boxes {'natural': 691, 'centred': 1036, 'dominance': 50, 'inside': 5} (0.3s)
+VERIFIED n3-triangle: exactly 4 zeros, all non-degenerate; index 1: 1, index 2: 3; m2-m1 = 2 = n-1: True
+certificates/n4-triangle-plus-centre.json
+  9 zero boxes verified (0.1s)
+  completeness: 15379 boxes {'natural': 4503, 'centred': 3042, 'dominance': 100, 'inside': 45} (1.4s)
+VERIFIED n4-triangle-plus-centre: exactly 9 zeros, all non-degenerate; index 1: 3, index 2: 6; m2-m1 = 3 = n-1: True
+certificates/n4-second-family.json
+  9 zero boxes verified (0.1s)
+  completeness: 28983 boxes {'natural': 1304, 'centred': 13029, 'dominance': 66, 'inside': 93} (3.6s)
+VERIFIED n4-second-family: exactly 9 zeros, all non-degenerate; index 1: 3, index 2: 6; m2-m1 = 3 = n-1: True
+certificates/n5-abk-bipyramid.json
+  24 zero boxes verified (0.1s)
+  completeness: 104271 boxes {'natural': 5160, 'centred': 46627, 'dominance': 177, 'inside': 172} (13.0s)
+VERIFIED n5-abk-bipyramid: exactly 24 zeros, all non-degenerate; index 1: 10, index 2: 14; m2-m1 = 4 = n-1: True
+certificates/n6-abk-plus-centre.json
+  29 zero boxes verified (0.1s)
+  completeness: 152925 boxes {'natural': 11820, 'centred': 64198, 'dominance': 230, 'inside': 215} (23.3s)
+VERIFIED n6-abk-plus-centre: exactly 29 zeros, all non-degenerate; index 1: 12, index 2: 17; m2-m1 = 5 = n-1: True
+certificates/n7-abk-second-pair.json
+  44 zero boxes verified (0.1s)
+  completeness: 394265 boxes {'natural': 17526, 'centred': 179061, 'dominance': 298, 'inside': 248} (74.8s)
+VERIFIED n7-abk-second-pair: exactly 44 zeros, all non-degenerate; index 1: 19, index 2: 25; m2-m1 = 6 = n-1: True
+certificates/n8-c7-plus-centre.json
+  49 zero boxes verified (0.2s)
+  completeness: 480647 boxes {'natural': 28442, 'centred': 211271, 'dominance': 351, 'inside': 260} (104.7s)
+VERIFIED n8-c7-plus-centre: exactly 49 zeros, all non-degenerate; index 1: 21, index 2: 28; m2-m1 = 7 = n-1: True
+certificates/n9-abk-third-pair.json
+  64 zero boxes verified (0.2s)
+  completeness: 915205 boxes {'natural': 38448, 'centred': 418425, 'dominance': 404, 'inside': 326} (237.7s)
+VERIFIED n9-abk-third-pair: exactly 64 zeros, all non-degenerate; index 1: 28, index 2: 36; m2-m1 = 8 = n-1: True
