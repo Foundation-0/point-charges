@@ -20,8 +20,14 @@ This study adds four computer-certified results and evidence on the open cases. 
 | 5 | 16 | **24**: an explicit ABK counterexample, every equilibrium enclosed | [n5-abk-bipyramid.json](certificates/n5-abk-bipyramid.json) |
 | 6 | 25 | **29**: Maxwell's bound fails for six charges too | [n6-abk-plus-centre.json](certificates/n6-abk-plus-centre.json) |
 | 7 | 36 | **44** †: the second ABK iteration, completely counted | [n7-abk-second-pair.json](certificates/n7-abk-second-pair.json) |
+| 8 | 49 | **49** ‡: Maxwell's bound is met, not beaten (the seven-charge example plus a tiny charge at the centre) | [n8-c7-plus-centre.json](certificates/n8-c7-plus-centre.json) |
+| 9 | 64 | **64** ‡: Maxwell's bound is met, not beaten (a third axial pair) | [n9-abk-third-pair.json](certificates/n9-abk-third-pair.json) |
 
 † Seven charges: proved by the independent verifier only for now (float certifier in issue #12).
+
+‡ Eight and nine charges: proved by `verify_arb.py` and by `indep_count.py`, a third checker that does not read the boxes. The float certifier was not run on them.
+A second four-charge family with exactly 9 equilibria is [n4-second-family.json](certificates/n4-second-family.json), proved the same way.
+See [results/2026-11-15-growth-per-charge.md](results/2026-11-15-growth-per-charge.md) for how the best known counts grow with the number of charges.
 
 Evidence, not proof: no three-charge configuration with more than 4 equilibria, and no four-charge
 configuration with more than 9, turned up in the searches described in NOTE.md §3.
@@ -32,9 +38,12 @@ configuration with more than 9, turned up in the searches described in NOTE.md �
 pip install -r requirements.txt
 python3 make_certs.py                      # interval-arithmetic certificates for 3-6 charges, about 5 s
 python3 explore/second_pair.py             # the 7-charge certificate (Arb Krawczyk boxes), seconds
-python3 verify_arb.py certificates/*.json  # independent re-check with Arb balls and exact rationals, about 2 min
+python3 verify_arb.py certificates/*.json  # independent re-check with Arb balls and exact rationals, about 8 min
 python3 tests/test_ia.py                   # the float interval library against exact rationals
 python3 tests/test_verifier_rejects.py     # corrupted certificates are rejected
+python3 tests/test_verifier_rejects_O.py   # the same under python -O: a bare assert would let them through
+python3 indep_count.py certificates/n4-triangle-plus-centre.json   # third checker; reads only sites and charges
+python3 tests/test_indep_count.py          # third checker accepts and rejects as it should, about 15 s
 ```
 
 Each certificate lists the sites and charges as exact fractions, and gives for every equilibrium a box that
@@ -51,8 +60,10 @@ non-degenerate equilibrium and that nothing exists outside the boxes.
 | `NOTE.md` | statements, constructions, proof sketch of the insertion lemma, method, evidence, references |
 | `certify.py`, `ia.py` | primary certifier: outward-rounded float64 intervals, bisection, Krawczyk test, Gershgorin indices |
 | `verify_arb.py` | independent verifier: python-flint Arb balls and exact rationals |
+| `indep_count.py` | third checker, written separately: proves the count from the sites and charges alone, ignoring the boxes ([note](results/2026-11-15-third-checker.md)) |
 | `make_certs.py` | the 3- to 6-charge configurations, as exact rationals |
 | `explore/second_pair.py` | the 7-charge configuration, its numerical search and Arb certificate builder |
+| `explore/to_repo_format.py`, `explore/configs/` | the 8-charge, 9-charge and second 4-charge configurations, and the converter that writes their certificates |
 | `charges.py` | fast numerical equilibrium finder used for exploration |
 | `export_page_data.py` | writes the data file for the Foundation0 page from the certificates |
 | `explore/` | the searches and local models behind NOTE.md §3 |

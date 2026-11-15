@@ -1,0 +1,41 @@
+  n  bound  (n-1)^2  vs   rule
+  2      1        1   =   base
+  3      4        4   =   base
+  4      9        9   =   ABK m=0 + centre charge
+  5     24       16   >   ABK m=1
+  6     29       25   >   ABK m=1 + centre charge
+  7     44       36   >   ABK m=2
+  8     49       49   =   ABK m=2 + centre charge
+  9     64       64   =   ABK m=3
+ 10     69       81   <   ABK m=3 + centre charge
+ 11     84      100   <   ABK m=4
+ 12     89      121   <   ABK m=4 + centre charge
+ 13    104      144   <   ABK m=5
+ 14    109      169   <   ABK m=5 + centre charge
+ 15    124      196   <   ABK m=6
+ 16    129      225   <   ABK m=6 + centre charge
+ 17    144      256   <   ABK m=7
+ 18    149      289   <   ABK m=7 + centre charge
+ 19    164      324   <   ABK m=8
+ 20    169      361   <   ABK m=8 + centre charge
+ 21    184      400   <   ABK m=9
+ 22    189      441   <   ABK m=9 + centre charge
+ 23    204      484   <   ABK m=10
+ 24    209      529   <   ABK m=10 + centre charge
+ 25    224      576   <   ABK m=11
+ 26    229      625   <   ABK m=11 + centre charge
+ 27    244      676   <   ABK m=12
+ 28    249      729   <   ABK m=12 + centre charge
+ 29    264      784   <   ABK m=13
+ 30    269      841   <   ABK m=13 + centre charge
+ 31    284      900   <   ABK m=14
+ 32    289      961   <   ABK m=14 + centre charge
+ 33    304     1024   <   ABK m=15
+ 34    309     1089   <   ABK m=15 + centre charge
+ 35    324     1156   <   ABK m=16
+ 36    329     1225   <   ABK m=16 + centre charge
+ 37    344     1296   <   ABK m=17
+ 38    349     1369   <   ABK m=17 + centre charge
+ 39    364     1444   <   ABK m=18
+ 40    369     1521   <   ABK m=18 + centre charge
+slope B(n)/n at n=40: 9.225
