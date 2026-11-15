@@ -1,6 +1,6 @@
 # 15 November 2026: how the best known counts grow with the number of charges, and a search for three and four charges
 
-This note adds to issue 5 (eight or more charges), issue 4 (three charges) and issue 3 (four charges). It follows the
+This note adds to issue 5 (eight or more charges), issue 4 (three charges) and issue 3 (four charges). A later note, `2026-11-15-four-charges-eleven.md`, gives four charges with 11 equilibria, above the figures of 9 quoted here for four charges. It follows the
 head `a2fd159`. Marks: **[C]** certified by the programs in this repository, **[N]** numerical, not certified,
 **[I]** inference.
 
@@ -63,7 +63,7 @@ that was then certified (`certificates/n4-second-family.json`) is a result of th
 | 3 | 311 | 46,063 | 4 in 197 pushes, 2 in 114 |
 | 4 | 130 | 16,495 | 9 in 17, 7 in 23, 5 in 56, 3 in 34 |
 
-- [N] Nothing above 4 for three charges and nothing above 9 for four charges. This agrees with the earlier searches in `results/SUMMARY.md` and is not a proof.
+- [N] The push found nothing above 4 for three charges and nothing above 9 for four charges. For four charges this is now known to be a limit of the push, not of the problem: a different method found 11 (`results/2026-11-15-four-charges-eleven.md`). For three charges the earlier searches in `results/SUMMARY.md` agree, and none of this is a proof.
 - [N] For three charges, in 333 of 344 configurations that reach 4, no complex pair lies in the all-positive region. Where one does, the nearest stays far from real. So a fifth point has no nearby source in the configurations tried. [I] A route to a proof: show that at count 4 no complex solution lies in the all-positive region.
 - [N] For four charges, at 9 there are still one or two candidate complex pairs, and one comes close. Moving toward it first merges two existing equilibria, so the count falls from 9 to 7. When that merge is forbidden, the push stops. [I] A tenth point is close and blocked by a merge. That is the pattern expected near a configuration where the potential is flat to second order at an equilibrium. The five-charge counterexample was built around such a point.
 - [N] The complex solution counts of the system were 68 for three charges (34 points) and 420 for four charges (210 points), by two solvers each. They are not proved.

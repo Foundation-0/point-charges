@@ -1,0 +1,5 @@
+n = [0.5 0.5 0.5 0.5]  smallest Gram eigenvalue -4.0e-17  |grad| 1.1e-16  |Hess| 5.6e-16  charges [1. 1. 1. 1.]
+n = [0.1865 0.196  0.95   0.1556]  smallest Gram eigenvalue 1.2e-15  |grad| 9.9e-15  |Hess| 1.4e-13  charges [0.0024 0.0028 1.     0.0014]
+n = [0.3085 0.2082 0.751  0.5454]  smallest Gram eigenvalue -3.3e-16  |grad| 6.7e-16  |Hess| 8.8e-15  charges [0.0481 0.0144 1.     0.3018]
+n = [0.4463 0.8025 0.3952 0.0262]  smallest Gram eigenvalue -8.4e-17  |grad| 1.3e-15  |Hess| 1.4e-13  charges [0.1147 1.     0.0776 0.    ]
+n = [0.8466 0.0797 0.4537 0.2666]  smallest Gram eigenvalue -4.2e-17  |grad| 4.4e-16  |Hess| 3.4e-14  charges [1.00e+00 4.00e-04 9.19e-02 1.73e-02]

@@ -26,6 +26,8 @@ jobs:
         run: python tests/test_verifier_rejects_O.py
       - name: Third checker accepts and rejects as it should
         run: python tests/test_indep_count.py
+      - name: Four-charge certificates with 11 equilibria
+        run: python tests/test_four_eleven.py
       - name: Certifier runs and its output verifies
         run: |
           python make_certs.py
