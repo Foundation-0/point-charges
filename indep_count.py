@@ -9,7 +9,8 @@ is compared at the end only.) Needs python-flint and NumPy.
 Usage: python3 -I -O indep_count.py <certificate or configuration .json> [out.json]
 Exit status: 0 the count agrees with the file's "count" (or the file has none), 2 it does not, 3 a proof step failed.
 
-Proof structure (the derivative bounds are checked numerically by tests/check_lemmas.py):
+Proof structure (each step is proved in results/2026-11-15-count-lemmas.md; the derivative bounds are also
+checked numerically by tests/check_lemmas.py):
   L1 (far field). If a half-space {u.x <= b} contains every site, then grad V != 0 wherever u.x > b.
       Half-spaces are built from triples of sites and checked in exact rationals.
       The root box is the bounding box of the sites, which contains the closed convex hull.
@@ -536,6 +537,11 @@ def main(argv):
         json.dump(res, open(out, "w"), indent=1)
     claimed = D.get("count")
     if claimed is not None:
+        try:
+            claimed = int(claimed)          # a count stored as text is compared as a number
+        except (TypeError, ValueError):
+            print(f"MISMATCH: the file's count field is not a whole number: {claimed!r}", flush=True)
+            return 2
         if claimed != count:
             print(f"MISMATCH: file claims {claimed}, independent count is {count}", flush=True)
             return 2

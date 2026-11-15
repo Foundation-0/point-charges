@@ -79,6 +79,6 @@ Needs python-flint and NumPy.
 
 ## Not verified
 
-- The two derivative bounds are proved on paper, not by machine.
+- The two derivative bounds are proved on paper, not by machine. The proofs, and the proof of each step of the count, are written out in `results/2026-11-15-count-lemmas.md`.
 - `indep_count.py` was written before its author opened `certify.py`, `ia.py` and `verify_arb.py`, but after reading NOTE.md's description of their method. It is a separately written program, not a blind one.
 - Nobody outside the project has run it.
