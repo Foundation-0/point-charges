@@ -1,0 +1,12 @@
+p=3 sect/zon: real nonzero 3 (index1 3, index2 0); complex 7; grid-forced 3
+p=3 zon/sect: real nonzero 5 (index1 2, index2 3); complex 7; grid-forced 4
+p=4 sect/zon: real nonzero 8 (index1 4, index2 4); complex 19; grid-forced 8
+p=4 zon/sect: real nonzero 11 (index1 5, index2 6); complex 19; grid-forced 9
+p=5 sect/zon: real nonzero 15 (index1 10, index2 5); complex 37; grid-forced 15
+p=5 zon/sect: real nonzero 19 (index1 8, index2 11); complex 37; grid-forced 16
+p=6 sect/zon: real nonzero 15 (index1 7, index2 8); complex 61; grid-forced 24
+p=6 zon/sect: real nonzero 29 (index1 14, index2 15); complex 61; grid-forced 25
+p=7 sect/zon: real nonzero 21 (index1 7, index2 14); complex 91; grid-forced 35
+p=7 zon/sect: real nonzero 41 (index1 18, index2 23); complex 91; grid-forced 36
+p=8 sect/zon: real nonzero 32 (index1 16, index2 16); complex 127; grid-forced 48
+p=8 zon/sect: real nonzero 43 (index1 21, index2 22); complex 127; grid-forced 49

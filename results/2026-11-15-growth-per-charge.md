@@ -40,6 +40,8 @@ Maxwell's bound grows with the square.
 | 20 | 169 | 361 | below |
 | 40 | 369 | 1521 | below |
 
+[I] Note added later: the statement that every known construction grows by about 10 equilibria per charge is about the constructions known before `results/2026-11-15-growth-n-three-halves.md`. That note argues, with a proof sketch, that the growth can be like n^(3/2). It beats no count yet.
+
 [I] So with what is known today, the bound is beaten only for 5, 6 and 7 charges and met for 8 and 9.
 From 10 charges up, no known construction reaches it. Clustering cannot change the rate, because it never gives more per charge than
 the best single configuration it uses (superadditivity and Fekete's lemma).

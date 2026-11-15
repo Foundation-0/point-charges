@@ -1,0 +1,15 @@
+tetrahedron: n = 4; first non-zero Taylor degree at the centre = 3, so the centre is 2-flat and unfolds into at most 8 points
+   other balance points: 0 (index 2: 0, index 1: 0), at radii []; index-2 minus index-1 = 0, so the local degree of the centre = 3
+   Maxwell's bound (n-1)^2 = 9; best known 10n-26 or 10n-31 = 9; centre + others could reach 8
+octahedron: n = 6; first non-zero Taylor degree at the centre = 4, so the centre is 3-flat and unfolds into at most 27 points
+   other balance points: 0 (index 2: 0, index 1: 0), at radii []; index-2 minus index-1 = 0, so the local degree of the centre = 5
+   Maxwell's bound (n-1)^2 = 25; best known 10n-26 or 10n-31 = 29; centre + others could reach 27
+cube: n = 8; first non-zero Taylor degree at the centre = 4, so the centre is 3-flat and unfolds into at most 27 points
+   other balance points: 12 (index 2: 12, index 1: 0), at radii [np.float64(0.4395)]; index-2 minus index-1 = 12, so the local degree of the centre = -5
+   Maxwell's bound (n-1)^2 = 49; best known 10n-26 or 10n-31 = 49; centre + others could reach 39
+icosahedron: n = 12; first non-zero Taylor degree at the centre = 6, so the centre is 5-flat and unfolds into at most 125 points
+   other balance points: 0 (index 2: 0, index 1: 0), at radii []; index-2 minus index-1 = 0, so the local degree of the centre = 11
+   Maxwell's bound (n-1)^2 = 121; best known 10n-26 or 10n-31 = 89; centre + others could reach 125
+dodecahedron: n = 20; first non-zero Taylor degree at the centre = 6, so the centre is 5-flat and unfolds into at most 125 points
+   other balance points: 30 (index 2: 30, index 1: 0), at radii [np.float64(0.6998)]; index-2 minus index-1 = 30, so the local degree of the centre = -11
+   Maxwell's bound (n-1)^2 = 361; best known 10n-26 or 10n-31 = 169; centre + others could reach 155

@@ -1,0 +1,15 @@
+levels (degree, axis, coefficient): [(7, 'z', 1.7713231131958773), (6, 'x', 0.00017713231131958774), (5, 'z', 1.7713231131958773e-10), (4, 'x', 1.771323113195877e-18), (3, 'z', 1.7713231131958772e-28), (2, 'x', 1.7713231131958772e-40), (1, 'z', 1.7713231131958772e-54)]
+  realize it 0: max residual 1.771e+00 (relative to max target 1.00e+00); smallest target 1.77e-54
+  realize it 1: max residual 4.552e-01 (relative to max target 2.57e-01); smallest target 1.77e-54
+  realize it 2: max residual 4.552e-02 (relative to max target 2.57e-02); smallest target 1.77e-54
+  realize it 3: max residual 5.450e-04 (relative to max target 3.08e-04); smallest target 1.77e-54
+  realize it 4: max residual 1.822e-08 (relative to max target 1.03e-08); smallest target 1.77e-54
+  realize it 5: max residual 3.391e-16 (relative to max target 1.91e-16); smallest target 1.77e-54
+  realize it 6: max residual 3.985e-24 (relative to max target 2.25e-24); smallest target 1.77e-54
+  realize it 7: max residual 2.077e-32 (relative to max target 1.17e-32); smallest target 1.77e-54
+  realize it 8: max residual 1.097e-40 (relative to max target 6.19e-41); smallest target 1.77e-54
+  realize it 9: max residual 8.151e-49 (relative to max target 4.60e-49); smallest target 1.77e-54
+  realize it 10: max residual 4.782e-57 (relative to max target 2.70e-57); smallest target 1.77e-54
+  realize it 11: max residual 5.133e-65 (relative to max target 2.90e-65); smallest target 1.77e-54
+realized in 14s
+rational config: max jet error 3.19e-73; smallest level coefficient 1.77e-54; charges [0.179, 0.0042, 0.8108, 0.0389, 0.8185, 0.1265, 0.036, 0.046, 0.2515, 0.7995, 0.1561, 0.008, 0.312, 0.1256, 0.04, 0.1506, 0.0248, 0.024, 0.1043, 0.0206, 0.0727]

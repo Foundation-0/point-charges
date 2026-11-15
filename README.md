@@ -57,6 +57,16 @@ the float certifier does not yet finish on that configuration (issue #12). In ev
 verifier reads only the configuration and the boxes, and re-proves both that each box holds a
 non-degenerate equilibrium and that nothing exists outside the boxes.
 
+## Growth with the number of charges
+
+An argument in four steps, with a proof sketch, says balance points can grow like n^(3/2) with n charges, faster than the 10 per charge of every earlier construction. It is not a finished proof and it beats no count in the table above. Two lower bounds in actual charges are proved: at least 26 balance points for 9 charges and at least 87 for 21 charges (not certificates, because no exact count was completed). See [results/2026-11-15-growth-n-three-halves.md](results/2026-11-15-growth-n-three-halves.md).
+
+```
+python3 explore/growth/levels_check.py     # the level counts, with a separately written program
+python3 -I -O lower_bound_hp.py explore/configs/growth-flat-d5-n9.json explore/growth/data/n9_candidates.npy 26
+python3 tests/test_lower_bound_hp.py       # add --slow for the 21-charge case (several minutes)
+```
+
 ## Files
 
 | path | what |
@@ -68,6 +78,8 @@ non-degenerate equilibrium and that nothing exists outside the boxes.
 | `make_certs.py` | the 3- to 6-charge configurations, as exact rationals |
 | `explore/second_pair.py` | the 7-charge configuration, its numerical search and Arb certificate builder |
 | `lower_bound_check.py` | fourth checker: finds its own candidates and proves at least N zeros with the Krawczyk test in ball arithmetic ([note](results/2026-11-15-four-charges-eleven.md)) |
+| `lower_bound_hp.py` | lower-bound prover for configurations whose balance points sit at many scales: 260-digit refinement, then a Krawczyk test in 1400-bit ball arithmetic |
+| `explore/growth/` | the programs behind the n^(3/2) argument: level counts, the inversion rule, flat points, the demonstration configurations |
 | `explore/four_eleven/` | the programs that built the two 11-equilibrium configurations of four charges (jet route and flat route) |
 | `explore/to_repo_format.py`, `explore/configs/` | the 8-charge, 9-charge and second 4-charge configurations, and the converter that writes their certificates |
 | `charges.py` | fast numerical equilibrium finder used for exploration |
