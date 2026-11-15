@@ -1,0 +1,4 @@
+rounded jets: g ['-3.002e-10', '-3.004e-10', '-3.001e-10'] Hdiag ['2.0e-6', '2.0e-6', '-4.0e-6'] cubic ['0.001', '0.0012', '0.0008']
+local count on rational config 11 idx2 7 idx1 4
+wrote n4-eleven-jet.json
+jet configuration reproduced exactly

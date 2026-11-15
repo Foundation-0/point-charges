@@ -1,0 +1,2 @@
+spread 0.15 samples 200000 incomplete 3
+real-solution counts 0..8: [1127, 0, 52690, 0, 100079, 0, 45424, 0, 677]

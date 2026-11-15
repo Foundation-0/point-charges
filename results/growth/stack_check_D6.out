@@ -1,0 +1,3 @@
+D = 6, normalisation maxcoef: candidates from 1200 starts: 41
+PROVED: 41 real non-degenerate critical points (det Hessian positive at 21, negative at 20); the stacking rule predicts 41; at most 125 exist
+  by distance from the origin, outermost first: [0, 17, 11, 7, 5, 1, 0]  rule: [0, 17, 11, 7, 5, 1]
