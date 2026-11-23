@@ -198,21 +198,28 @@ def morse_index(lo, hi, a, q):
 
 # ---------- main subdivision ----------
 
-def certify(a, q, pad=1e-3, max_boxes=5_000_000, verbose=True):
+def certify(a, q, pad=1e-3, max_boxes=5_000_000, verbose=True, batch_size=8192):
     a = np.asarray(a, float); q = np.asarray(q, float)
     assert (q > 0).all()
     span = np.max(np.ptp(a, 0))
     lo0 = a.min(0) - pad * span; hi0 = a.max(0) + pad * span
-    queue_lo = lo0[None].copy(); queue_hi = hi0[None].copy()
+    if type(batch_size) is not int or batch_size < 1:
+        raise ValueError("batch_size must be a positive integer")
+    pending = [(lo0[None].copy(), hi0[None].copy())]
+    # LIFO batches bound temporary interval arrays while retaining every child.
+    # All exclusion and Krawczyk arithmetic below is unchanged.
     verified = []          # list of (lo, hi) verified boxes
     stats = dict(boxes=0, excl_interval=0, excl_dominance=0, krawczyk=0)
     t0 = time.time()
-    while len(queue_lo):
-        m = len(queue_lo)
+    while pending:
+        lo, hi = pending.pop()
+        if len(lo) > batch_size:
+            pending.append((lo[batch_size:], hi[batch_size:]))
+            lo, hi = lo[:batch_size], hi[:batch_size]
+        m = len(lo)
         stats['boxes'] += m
         if stats['boxes'] > max_boxes:
             raise RuntimeError('box budget exceeded')
-        lo, hi = queue_lo, queue_hi
         dom = dominance(lo, hi, a, q)
         g = grad_iv(lo, hi, a, q)
         ex = np.zeros(m, bool)
@@ -230,7 +237,7 @@ def certify(a, q, pad=1e-3, max_boxes=5_000_000, verbose=True):
         keep = ~(ex | dom)
         lo, hi = lo[keep], hi[keep]
         if not len(lo):
-            break
+            continue
         # Krawczyk on inflated boxes that are small compared with their distance to the sites
         w = hi - lo
         cen = 0.5 * (lo + hi)
@@ -254,7 +261,8 @@ def certify(a, q, pad=1e-3, max_boxes=5_000_000, verbose=True):
         mid = 0.5 * (lo[np.arange(len(lo)), k] + hi[np.arange(len(lo)), k])
         lo1, hi1 = lo.copy(), hi.copy(); lo2, hi2 = lo.copy(), hi.copy()
         hi1[np.arange(len(lo)), k] = mid; lo2[np.arange(len(lo)), k] = mid
-        queue_lo = np.vstack([lo1, lo2]); queue_hi = np.vstack([hi1, hi2])
+        if len(lo):
+            pending.append((np.vstack([lo1, lo2]), np.vstack([hi1, hi2])))
     if verbose:
         print(f"subdivision done: {stats['boxes']} boxes, {len(verified)} Krawczyk boxes, {time.time()-t0:.1f}s", flush=True)
     zeros = merge(verified, a, q)
