@@ -17,11 +17,18 @@ This study adds four computer-certified results and evidence on the open cases. 
 |---|---|---|---|
 | 3 | 4 | 4 (sanity check: the equilateral triangle) | [n3-triangle.json](certificates/n3-triangle.json) |
 | 4 | 9 | **9**: the bound is reached (EFO 2026 knew of no example for $n>3$) | [n4-triangle-plus-centre.json](certificates/n4-triangle-plus-centre.json) |
+| 4 | 9 | **11**: Maxwell's bound fails for four charges. Claimed. Exactly 11 equilibria (7 of index 2, 4 of index 1), proved by separately written checkers, in two configurations built by two methods, and in a third with coordinates of five decimal places. See [the note](results/2026-11-15-four-charges-eleven.md) | [n4-eleven-jet.json](certificates/n4-eleven-jet.json), [n4-eleven-flat.json](certificates/n4-eleven-flat.json), [n4-eleven-short.json](certificates/n4-eleven-short.json) |
 | 5 | 16 | **24**: an explicit ABK counterexample, every equilibrium enclosed | [n5-abk-bipyramid.json](certificates/n5-abk-bipyramid.json) |
 | 6 | 25 | **29**: Maxwell's bound fails for six charges too | [n6-abk-plus-centre.json](certificates/n6-abk-plus-centre.json) |
 | 7 | 36 | **44** †: the second ABK iteration, completely counted | [n7-abk-second-pair.json](certificates/n7-abk-second-pair.json) |
+| 8 | 49 | **49** ‡: Maxwell's bound is met, not beaten (the seven-charge example plus a tiny charge at the centre) | [n8-c7-plus-centre.json](certificates/n8-c7-plus-centre.json) |
+| 9 | 64 | **64** ‡: Maxwell's bound is met, not beaten (a third axial pair) | [n9-abk-third-pair.json](certificates/n9-abk-third-pair.json) |
 
 † Seven charges: proved by the independent verifier only for now (float certifier in issue #12).
+
+‡ Eight and nine charges: proved by `verify_arb.py` and by `indep_count.py`, a third checker that does not read the boxes. The float certifier was not run on them.
+A second four-charge family with exactly 9 equilibria is [n4-second-family.json](certificates/n4-second-family.json), proved the same way.
+See [results/2026-11-15-growth-per-charge.md](results/2026-11-15-growth-per-charge.md) for how the best known counts grow with the number of charges.
 
 Evidence, not proof: no three-charge configuration with more than 4 equilibria, and no four-charge
 configuration with more than 9, turned up in the searches described in NOTE.md §3.
@@ -32,9 +39,15 @@ configuration with more than 9, turned up in the searches described in NOTE.md �
 pip install -r requirements.txt
 python3 make_certs.py                      # interval-arithmetic certificates for 3-6 charges, about 5 s
 python3 explore/second_pair.py             # the 7-charge certificate (Arb Krawczyk boxes), seconds
-python3 verify_arb.py certificates/*.json  # independent re-check with Arb balls and exact rationals, about 2 min
+python3 verify_arb.py certificates/*.json  # independent re-check with Arb balls and exact rationals, about 8 min
 python3 tests/test_ia.py                   # the float interval library against exact rationals
 python3 tests/test_verifier_rejects.py     # corrupted certificates are rejected
+python3 tests/test_verifier_rejects_O.py   # the same under python -O: a bare assert would let them through
+python3 indep_count.py certificates/n4-triangle-plus-centre.json   # third checker; reads only sites and charges
+python3 tests/test_indep_count.py          # third checker accepts and rejects as it should, about 15 s
+python3 -O lower_bound_check.py certificates/n4-eleven-flat.json 11   # fourth checker: proves at least 11, about 12 s
+python3 tests/test_four_eleven.py          # the four-charge certificates with 11 equilibria: accepted, and corrupted inputs rejected, about 1 min
+sh results/four-eleven/run_programs.sh     # rebuilds both 11-point configurations from the programs in explore/four_eleven/, about 15 min
 ```
 
 Each certificate lists the sites and charges as exact fractions, and gives for every equilibrium a box that
@@ -44,6 +57,17 @@ the float certifier does not yet finish on that configuration (issue #12). In ev
 verifier reads only the configuration and the boxes, and re-proves both that each box holds a
 non-degenerate equilibrium and that nothing exists outside the boxes.
 
+## Growth with the number of charges
+
+An argument in four steps, with a proof sketch, says balance points can grow like n^(3/2) with n charges, faster than the 10 per charge of every earlier construction. It is not a finished proof and it beats no count in the table above. Two lower bounds in actual charges are proved: at least 26 balance points for 9 charges and at least 87 for 21 charges (not certificates, because no exact count was completed). See [results/2026-11-15-growth-n-three-halves.md](results/2026-11-15-growth-n-three-halves.md).
+
+```
+python3 explore/growth/levels_check.py     # the level counts, with a separately written program
+python3 -O explore/growth/stack_check.py 6 maxcoef 200   # stacked levels: 41 critical points proved, about 5 min
+python3 -I -O lower_bound_hp.py explore/configs/growth-flat-d5-n9.json explore/growth/data/n9_candidates.npy 26
+python3 tests/test_lower_bound_hp.py       # add --slow for the 21-charge case (several minutes)
+```
+
 ## Files
 
 | path | what |
@@ -51,8 +75,14 @@ non-degenerate equilibrium and that nothing exists outside the boxes.
 | `NOTE.md` | statements, constructions, proof sketch of the insertion lemma, method, evidence, references |
 | `certify.py`, `ia.py` | primary certifier: outward-rounded float64 intervals, bisection, Krawczyk test, Gershgorin indices |
 | `verify_arb.py` | independent verifier: python-flint Arb balls and exact rationals |
+| `indep_count.py` | third checker, written separately: proves the count from the sites and charges alone, ignoring the boxes ([note](results/2026-11-15-third-checker.md)) |
 | `make_certs.py` | the 3- to 6-charge configurations, as exact rationals |
 | `explore/second_pair.py` | the 7-charge configuration, its numerical search and Arb certificate builder |
+| `lower_bound_check.py` | fourth checker: finds its own candidates and proves at least N zeros with the Krawczyk test in ball arithmetic ([note](results/2026-11-15-four-charges-eleven.md)) |
+| `lower_bound_hp.py` | lower-bound prover for configurations whose balance points sit at many scales: 260-digit refinement, then a Krawczyk test in 1400-bit ball arithmetic |
+| `explore/growth/` | the programs behind the n^(3/2) argument: level counts, the inversion rule, flat points, the demonstration configurations |
+| `explore/four_eleven/` | the programs that built the two 11-equilibrium configurations of four charges (jet route and flat route) |
+| `explore/to_repo_format.py`, `explore/configs/` | the 8-charge, 9-charge and second 4-charge configurations, and the converter that writes their certificates |
 | `charges.py` | fast numerical equilibrium finder used for exploration |
 | `export_page_data.py` | writes the data file for the Foundation0 page from the certificates |
 | `explore/` | the searches and local models behind NOTE.md §3 |

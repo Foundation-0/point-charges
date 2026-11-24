@@ -1,0 +1,187 @@
+
+$ python3 verify_arb.py certificates/n4-eleven-jet.json
+certificates/n4-eleven-jet.json
+  11 zero boxes verified (0.1s)
+  completeness: 49247 boxes {'natural': 1164, 'centred': 23352, 'dominance': 81, 'inside': 27} (11.0s)
+VERIFIED n4-eleven-jet: exactly 11 zeros, all non-degenerate; index 1: 4, index 2: 7; m2-m1 = 3 = n-1: True
+[exit status 0]
+
+$ python3 -O verify_arb.py certificates/n4-eleven-jet.json
+certificates/n4-eleven-jet.json
+  11 zero boxes verified (0.1s)
+  completeness: 49247 boxes {'natural': 1164, 'centred': 23352, 'dominance': 81, 'inside': 27} (8.6s)
+VERIFIED n4-eleven-jet: exactly 11 zeros, all non-degenerate; index 1: 4, index 2: 7; m2-m1 = 3 = n-1: True
+[exit status 0]
+
+$ python3 -I -O indep_count.py certificates/n4-eleven-jet.json
+certificates/n4-eleven-jet.json: n=4
+RESULT certificates/n4-eleven-jet.json: count=11 index1=4 index2=7 m2-m1=3 n-1=3 {'boxes': 36897, 'L1': 429, 'L2': 135, 'T1': 948, 'T2': 30551, 'Z': 222, 'newton_tries': 4243, 'max_level': 23, 'seconds': 17.3}
+AGREES with claimed count 11
+[exit status 0]
+
+$ python3 -I -O lower_bound_check.py certificates/n4-eleven-jet.json 11
+candidates found by float Newton: 11
+PROVED: at least 11 non-degenerate balance points; index 2: 7, index 1: 4; index-2 minus index-1 = 3, charges minus one = 3
+OK
+[exit status 0]
+
+$ python3 verify_arb.py certificates/n4-eleven-flat.json
+certificates/n4-eleven-flat.json
+  11 zero boxes verified (0.1s)
+  completeness: 49299 boxes {'natural': 1267, 'centred': 23184, 'dominance': 87, 'inside': 112} (8.3s)
+VERIFIED n4-eleven-flat: exactly 11 zeros, all non-degenerate; index 1: 4, index 2: 7; m2-m1 = 3 = n-1: True
+[exit status 0]
+
+$ python3 -O verify_arb.py certificates/n4-eleven-flat.json
+certificates/n4-eleven-flat.json
+  11 zero boxes verified (0.1s)
+  completeness: 49299 boxes {'natural': 1267, 'centred': 23184, 'dominance': 87, 'inside': 112} (8.1s)
+VERIFIED n4-eleven-flat: exactly 11 zeros, all non-degenerate; index 1: 4, index 2: 7; m2-m1 = 3 = n-1: True
+[exit status 0]
+
+$ python3 -I -O indep_count.py certificates/n4-eleven-flat.json
+certificates/n4-eleven-flat.json: n=4
+RESULT certificates/n4-eleven-flat.json: count=11 index1=4 index2=7 m2-m1=3 n-1=3 {'boxes': 33873, 'L1': 349, 'L2': 103, 'T1': 536, 'T2': 28200, 'Z': 451, 'newton_tries': 3923, 'max_level': 19, 'seconds': 16.1}
+AGREES with claimed count 11
+[exit status 0]
+
+$ python3 -I -O lower_bound_check.py certificates/n4-eleven-flat.json 11
+candidates found by float Newton: 11
+PROVED: at least 11 non-degenerate balance points; index 2: 7, index 1: 4; index-2 minus index-1 = 3, charges minus one = 3
+OK
+[exit status 0]
+
+$ python3 -I -O lower_bound_check.py certificates/n4-eleven-flat.json 12
+candidates found by float Newton: 11
+PROVED: at least 11 non-degenerate balance points; index 2: 7, index 1: 4; index-2 minus index-1 = 3, charges minus one = 3
+CheckFailure: proved 11, expected at least 12
+[exit status 1]
+
+$ python3 tests/test_four_eleven.py
+n4-eleven-jet: lower_bound_check proves 11                     exit 0 OK | OK
+n4-eleven-flat: lower_bound_check proves 11                    exit 0 OK | OK
+n4-eleven-flat: lower_bound_check asked for 12 stops           exit 1 OK | CheckFailure: proved 11, expected at least 12
+n4-eleven-jet: indep_count, claimed 13                         exit 2 OK | MISMATCH: file claims 13, independent count is 11
+n4-eleven-jet: indep_count, a charge times 1.000001            exit 2 OK | MISMATCH: file claims 11, independent count is 5
+n4-eleven-jet: verify_arb, a charge times 1.000001             exit 1 OK | VerificationError: Krawczyk failed for {'box': [[-0.00043690
+ALL CASES BEHAVED
+[exit status 0]
+
+$ python3 tests/test_indep_count.py
+n4 unchanged                                   exit 0 OK | AGREES with claimed count 9
+n4 claimed count 10 (true count is 9)          exit 2 OK | MISMATCH: file claims 10, independent count is 9
+n4 boxes replaced by garbage (never read)      exit 0 OK | AGREES with claimed count 9
+n4 centre charge 1/32 (count changes)          exit 2 OK | MISMATCH: file claims 9, independent count is 3
+n4 negative charge                             exit 3 OK | PROOF FAILURE: all charges must be positive
+n5 unchanged (24 zeros)                        exit 0 OK | AGREES with claimed count 24
+n5 axial charges changed (count changes)       exit 2 OK | MISMATCH: file claims 24, independent count is 6
+ALL CASES BEHAVED
+[exit status 0]
+
+$ python3 tests/test_verifier_rejects.py
+  8 zero boxes verified (0.1s)
+rejected as expected (one zero removed): cannot resolve box near [0.9207102230579677, 0.9207102230579677, 1.1585795538840
+rejected as expected (one zero duplicated): enclosures 0, 9 overlap
+rejected as expected (wrong Morse index): index mismatch 2 vs 1
+rejected as expected (centre charge changed to 1/32): Krawczyk failed for {'box': [[0.4408546875, 1.2628078125, 1.2628078125], [0.4690
+ALL NEGATIVE CONTROLS PASSED
+[exit status 0]
+
+$ python3 tests/test_verifier_rejects_O.py
+python    control (unchanged certificate): accepted OK
+python    one zero removed                 rejected OK | RuntimeError: cannot resolve box near [0.9207102230579677, 0.920710223
+python    one zero duplicated              rejected OK | VerificationError: enclosures 0, 9 overlap
+python    wrong Morse index                rejected OK | VerificationError: index mismatch 2 vs 1
+python    centre charge changed to 1/32    rejected OK | VerificationError: Krawczyk failed for {'box': [[0.4408546875, 1.26280
+python    claimed count one too high       rejected OK | VerificationError: certificate claims 10 zeros but 9 boxes were verifi
+python    zero box squeezed to a plane     rejected OK | VerificationError: Krawczyk failed for {'box': [[0.46903593750000006, 
+python -O control (unchanged certificate): accepted OK
+python -O one zero removed                 rejected OK | RuntimeError: cannot resolve box near [0.9207102230579677, 0.920710223
+python -O one zero duplicated              rejected OK | VerificationError: enclosures 0, 9 overlap
+python -O wrong Morse index                rejected OK | VerificationError: index mismatch 2 vs 1
+python -O centre charge changed to 1/32    rejected OK | VerificationError: Krawczyk failed for {'box': [[0.4408546875, 1.26280
+python -O claimed count one too high       rejected OK | VerificationError: certificate claims 10 zeros but 9 boxes were verifi
+python -O zero box squeezed to a plane     rejected OK | VerificationError: Krawczyk failed for {'box': [[0.46903593750000006, 
+ALL NEGATIVE CONTROLS PASSED UNDER -O
+[exit status 0]
+
+$ python3 tests/test_ia.py
+violations: 0
+[exit status 0]
+
+$ python3 tests/test_known.py
+triangle {'n': 4, 'm1': 1, 'm2': 3, 'other': 0, 'morse_ok': True, 'min_eig': 1.3797663759519563}
+triangle+centre q=0.01 {'n': 3, 'm1': 0, 'm2': 3, 'other': 0, 'morse_ok': True, 'min_eig': 2.7544532516586804}
+triangle+centre q=0.1 {'n': 3, 'm1': 0, 'm2': 3, 'other': 0, 'morse_ok': True, 'min_eig': 5.795517262904303}
+triangle+centre q=0.5 {'n': 3, 'm1': 0, 'm2': 3, 'other': 0, 'morse_ok': True, 'min_eig': 11.154483349486206}
+triangle+centre q=1 {'n': 3, 'm1': 0, 'm2': 3, 'other': 0, 'morse_ok': True, 'min_eig': 16.06376110097635}
+ABK eps=0.166667 {'n': 24, 'm1': 10, 'm2': 14, 'other': 0, 'morse_ok': True, 'min_eig': 0.004886664744461741}
+ABK eps=0.1 {'n': 24, 'm1': 10, 'm2': 14, 'other': 0, 'morse_ok': True, 'min_eig': 0.001989944274829811}
+[exit status 0]
+
+$ python3 -O verify_arb.py certificates/n3-triangle.json certificates/n4-eleven-flat.json certificates/n4-eleven-jet.json certificates/n4-second-family.json certificates/n4-triangle-plus-centre.json certificates/n5-abk-bipyramid.json certificates/n6-abk-plus-centre.json certificates/n7-abk-second-pair.json certificates/n8-c7-plus-centre.json certificates/n9-abk-third-pair.json
+certificates/n3-triangle.json
+  4 zero boxes verified (0.0s)
+  completeness: 3563 boxes {'natural': 691, 'centred': 1036, 'dominance': 50, 'inside': 5} (0.3s)
+VERIFIED n3-triangle: exactly 4 zeros, all non-degenerate; index 1: 1, index 2: 3; m2-m1 = 2 = n-1: True
+certificates/n4-eleven-flat.json
+  11 zero boxes verified (0.0s)
+  completeness: 49299 boxes {'natural': 1267, 'centred': 23184, 'dominance': 87, 'inside': 112} (7.8s)
+VERIFIED n4-eleven-flat: exactly 11 zeros, all non-degenerate; index 1: 4, index 2: 7; m2-m1 = 3 = n-1: True
+certificates/n4-eleven-jet.json
+  11 zero boxes verified (0.0s)
+  completeness: 49247 boxes {'natural': 1164, 'centred': 23352, 'dominance': 81, 'inside': 27} (8.3s)
+VERIFIED n4-eleven-jet: exactly 11 zeros, all non-degenerate; index 1: 4, index 2: 7; m2-m1 = 3 = n-1: True
+certificates/n4-second-family.json
+  9 zero boxes verified (0.0s)
+  completeness: 28983 boxes {'natural': 1304, 'centred': 13029, 'dominance': 66, 'inside': 93} (4.1s)
+VERIFIED n4-second-family: exactly 9 zeros, all non-degenerate; index 1: 3, index 2: 6; m2-m1 = 3 = n-1: True
+certificates/n4-triangle-plus-centre.json
+  9 zero boxes verified (0.0s)
+  completeness: 15379 boxes {'natural': 4503, 'centred': 3042, 'dominance': 100, 'inside': 45} (1.4s)
+VERIFIED n4-triangle-plus-centre: exactly 9 zeros, all non-degenerate; index 1: 3, index 2: 6; m2-m1 = 3 = n-1: True
+certificates/n5-abk-bipyramid.json
+  24 zero boxes verified (0.0s)
+  completeness: 104271 boxes {'natural': 5160, 'centred': 46627, 'dominance': 177, 'inside': 172} (16.0s)
+VERIFIED n5-abk-bipyramid: exactly 24 zeros, all non-degenerate; index 1: 10, index 2: 14; m2-m1 = 4 = n-1: True
+certificates/n6-abk-plus-centre.json
+  29 zero boxes verified (0.0s)
+  completeness: 152925 boxes {'natural': 11820, 'centred': 64198, 'dominance': 230, 'inside': 215} (29.1s)
+VERIFIED n6-abk-plus-centre: exactly 29 zeros, all non-degenerate; index 1: 12, index 2: 17; m2-m1 = 5 = n-1: True
+certificates/n7-abk-second-pair.json
+  44 zero boxes verified (0.1s)
+  completeness: 394265 boxes {'natural': 17526, 'centred': 179061, 'dominance': 298, 'inside': 248} (105.4s)
+VERIFIED n7-abk-second-pair: exactly 44 zeros, all non-degenerate; index 1: 19, index 2: 25; m2-m1 = 6 = n-1: True
+certificates/n8-c7-plus-centre.json
+  49 zero boxes verified (0.1s)
+  completeness: 480647 boxes {'natural': 28442, 'centred': 211271, 'dominance': 351, 'inside': 260} (119.0s)
+VERIFIED n8-c7-plus-centre: exactly 49 zeros, all non-degenerate; index 1: 21, index 2: 28; m2-m1 = 7 = n-1: True
+certificates/n9-abk-third-pair.json
+  64 zero boxes verified (0.1s)
+  completeness: 915205 boxes {'natural': 38448, 'centred': 418425, 'dominance': 404, 'inside': 326} (272.3s)
+VERIFIED n9-abk-third-pair: exactly 64 zeros, all non-degenerate; index 1: 28, index 2: 36; m2-m1 = 8 = n-1: True
+[exit status 0]
+
+# the five-decimal certificate, added after the run above
+
+$ python3 verify_arb.py certificates/n4-eleven-short.json
+  11 zero boxes verified (0.4s)
+  completeness: 47145 boxes {'natural': 1269, 'centred': 22114, 'dominance': 87, 'inside': 103} (25.5s)
+VERIFIED n4-eleven-short: exactly 11 zeros, all non-degenerate; index 1: 4, index 2: 7; m2-m1 = 3 = n-1: True
+[exit status 0]
+
+$ python3 -O verify_arb.py certificates/n4-eleven-short.json
+  11 zero boxes verified (0.3s)
+  completeness: 47145 boxes {'natural': 1269, 'centred': 22114, 'dominance': 87, 'inside': 103} (26.6s)
+VERIFIED n4-eleven-short: exactly 11 zeros, all non-degenerate; index 1: 4, index 2: 7; m2-m1 = 3 = n-1: True
+[exit status 0]
+
+$ python3 -I -O indep_count.py certificates/n4-eleven-short.json
+RESULT certificates/n4-eleven-short.json: count=11 index1=4 index2=7 m2-m1=3 n-1=3 {'boxes': 32721, 'L1': 349, 'L2': 103, 'T1': 536, 'T2': 27171, 'Z': 472, 'newton_tries': 3764, 'max_level': 18, 'seconds': 33.3}
+AGREES with claimed count 11
+[exit status 0]
+
+$ python3 -I -O lower_bound_check.py certificates/n4-eleven-short.json 11
+PROVED: at least 11 non-degenerate balance points; index 2: 7, index 1: 4; index-2 minus index-1 = 3, charges minus one = 3
+OK
+[exit status 0]

@@ -1,0 +1,11 @@
+check 1: one level
+  p =  3: directions found 5; claimed I_p - 1 = 5; largest relative residual 2.7e-16; smallest eigenvalue ratio 0.250; index 2: 2, index 1: 3
+  p =  4: directions found 7; claimed I_p - 1 = 7; largest relative residual 2.2e-15; smallest eigenvalue ratio 0.200; index 2: 4, index 1: 3
+  p =  5: directions found 11; claimed I_p - 1 = 11; largest relative residual 1.2e-15; smallest eigenvalue ratio 0.167; index 2: 5, index 1: 6
+  p =  6: directions found 17; claimed I_p - 1 = 17; largest relative residual 1.2e-15; smallest eigenvalue ratio 0.143; index 2: 9, index 1: 8
+  p =  7: directions found 25; claimed I_p - 1 = 25; largest relative residual 3.7e-15; smallest eigenvalue ratio 0.125; index 2: 12, index 1: 13
+  p =  8: directions found 31; claimed I_p - 1 = 31; largest relative residual 3.1e-15; smallest eigenvalue ratio 0.111; index 2: 16, index 1: 15
+  p =  9: directions found 39; claimed I_p - 1 = 39; largest relative residual 2.9e-15; smallest eigenvalue ratio 0.100; index 2: 19, index 1: 20
+  p = 10: directions found 49; claimed I_p - 1 = 49; largest relative residual 5.4e-15; smallest eigenvalue ratio 0.091; index 2: 25, index 1: 24
+  p = 11: directions found 61; claimed I_p - 1 = 61; largest relative residual 5.9e-15; smallest eigenvalue ratio 0.083; index 2: 30, index 1: 31
+  p = 12: directions found 71; claimed I_p - 1 = 71; largest relative residual 8.8e-15; smallest eigenvalue ratio 0.077; index 2: 36, index 1: 35

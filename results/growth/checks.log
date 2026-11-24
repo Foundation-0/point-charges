@@ -1,0 +1,119 @@
+
+$ python3 -I -O lower_bound_hp.py explore/configs/growth-flat-d5-n9.json explore/growth/data/n9_candidates.npy 26
+candidates given: 26  distinct after refinement: 26
+distances of the proved points from the origin: 2.82e-06 2.20e-05 5.53e-05 5.53e-05 6.89e-05 6.89e-05 1.54e-03 1.58e-03 1.58e-03 1.59e-03 1.86e-03 1.91e-03 3.83e-03 4.62e-02 4.66e-02 6.85e-02 1.06e-01 1.08e-01 1.16e-01 1.52e-01 1.69e-01 1.94e-01 2.03e-01 3.13e-01 4.16e-01 5.58e-01
+PROVED: at least 26 non-degenerate balance points; index 2: 17, index 1: 9; index-2 minus index-1 = 8, charges minus one = 8
+OK
+[exit status 0]
+
+$ python3 -I -O lower_bound_hp.py explore/configs/growth-flat-d8-n21.json explore/growth/data/n21_candidates.npy 87
+candidates given: 87  distinct after refinement: 87
+distances of the proved points from the origin: 1.02e-14 4.89e-13 1.12e-12 1.12e-12 1.41e-12 1.41e-12 1.56e-10 1.56e-10 1.56e-10 1.56e-10 1.79e-10 1.79e-10 4.39e-10 4.56e-09 1.18e-08 1.18e-08 1.36e-08 1.36e-08 1.45e-08 1.45e-08 1.66e-08 1.66e-08 1.66e-08 1.66e-08 1.55e-06 1.55e-06 1.55e-06 1.55e-06 1.95e-06 1.95e-06 1.95e-06 1.95e-06 2.08e-06 2.08e-06 2.39e-06 2.39e-06 2.39e-06 2.39e-06 2.54e-06 2.54e-06 6.73e-06 5.57e-05 1.51e-04 1.51e-04 1.60e-04 1.60e-04 1.60e-04 1.60e-04 1.94e-04 1.94e-04 2.05e-04 2.07e-04 2.07e-04 2.08e-04 2.13e-04 2.14e-04 2.25e-04 2.27e-04 2.27e-04 2.28e-04 2.30e-04 2.31e-04 2.82e-04 2.83e-04 2.84e-04 2.85e-04 1.42e-02 1.76e-02 1.93e-02 2.21e-02 2.30e-02 2.45e-02 2.68e-02 2.75e-02 3.47e-02 3.57e-02 3.77e-02 3.94e-02 3.98e-02 4.01e-02 4.02e-02 4.13e-02 4.35e-02 4.38e-02 4.67e-02 5.51e-02 5.71e-02
+PROVED: at least 87 non-degenerate balance points; index 2: 47, index 1: 40; index-2 minus index-1 = 7, charges minus one = 20
+OK
+[exit status 0]
+
+$ python3 explore/growth/levels_check.py
+check 1: one level
+  p =  3: directions found 5; claimed I_p - 1 = 5; largest relative residual 2.7e-16; smallest eigenvalue ratio 0.250; index 2: 2, index 1: 3
+  p =  4: directions found 7; claimed I_p - 1 = 7; largest relative residual 2.2e-15; smallest eigenvalue ratio 0.200; index 2: 4, index 1: 3
+  p =  5: directions found 11; claimed I_p - 1 = 11; largest relative residual 1.2e-15; smallest eigenvalue ratio 0.167; index 2: 5, index 1: 6
+  p =  6: directions found 17; claimed I_p - 1 = 17; largest relative residual 1.2e-15; smallest eigenvalue ratio 0.143; index 2: 9, index 1: 8
+  p =  7: directions found 25; claimed I_p - 1 = 25; largest relative residual 3.7e-15; smallest eigenvalue ratio 0.125; index 2: 12, index 1: 13
+  p =  8: directions found 31; claimed I_p - 1 = 31; largest relative residual 3.1e-15; smallest eigenvalue ratio 0.111; index 2: 16, index 1: 15
+  p =  9: directions found 39; claimed I_p - 1 = 39; largest relative residual 2.9e-15; smallest eigenvalue ratio 0.100; index 2: 19, index 1: 20
+  p = 10: directions found 49; claimed I_p - 1 = 49; largest relative residual 5.4e-15; smallest eigenvalue ratio 0.091; index 2: 25, index 1: 24
+  p = 11: directions found 61; claimed I_p - 1 = 61; largest relative residual 5.9e-15; smallest eigenvalue ratio 0.083; index 2: 30, index 1: 31
+  p = 12: directions found 71; claimed I_p - 1 = 71; largest relative residual 8.8e-15; smallest eigenvalue ratio 0.077; index 2: 36, index 1: 35
+check 2: stacked levels (extended precision Newton)
+  D = 3, ratio 0.01: real critical points found 6; claimed 6; by scale (outermost first) [0, 5, 1]
+  D = 4, ratio 0.01: real critical points found 13; claimed 13; by scale (outermost first) [0, 7, 5, 1]
+  D = 5, ratio 0.01: real critical points found 24; claimed 24; by scale (outermost first) [0, 11, 7, 5, 1]
+ALL CHECKS PASSED
+[exit status 0]
+
+$ python3 tests/test_lower_bound_hp.py --slow
+9 charges: proves at least 26                              exit 0 OK | OK
+9 charges: asked for 27 stops with an error                exit 1 OK | CheckFailure: proved 26, expected at least 27
+9 charges: one charge changed by 1e-6, 26 not proved       exit 1 OK | CheckFailure: proved 13, expected at least 26
+21 charges: proves at least 87 (slow)                      exit 0 OK | OK
+ALL CASES BEHAVED
+[exit status 0]
+
+$ python3 tests/test_four_eleven.py
+n4-eleven-jet: lower_bound_check proves 11                     exit 0 OK | OK
+n4-eleven-flat: lower_bound_check proves 11                    exit 0 OK | OK
+n4-eleven-short: lower_bound_check proves 11                   exit 0 OK | OK
+n4-eleven-flat: lower_bound_check asked for 12 stops           exit 1 OK | CheckFailure: proved 11, expected at least 12
+n4-eleven-jet: indep_count, claimed 13                         exit 2 OK | MISMATCH: file claims 13, independent count is 11
+n4-eleven-jet: indep_count, a charge times 1.000001            exit 2 OK | MISMATCH: file claims 11, independent count is 5
+n4-eleven-jet: verify_arb, a charge times 1.000001             exit 1 OK | VerificationError: Krawczyk failed for {'box': [[-0.00043690
+ALL CASES BEHAVED
+[exit status 0]
+
+$ python3 tests/test_indep_count.py
+n4 unchanged                                   exit 0 OK | AGREES with claimed count 9
+n4 claimed count 10 (true count is 9)          exit 2 OK | MISMATCH: file claims 10, independent count is 9
+n4 boxes replaced by garbage (never read)      exit 0 OK | AGREES with claimed count 9
+n4 centre charge 1/32 (count changes)          exit 2 OK | MISMATCH: file claims 9, independent count is 3
+n4 negative charge                             exit 3 OK | PROOF FAILURE: all charges must be positive
+n5 unchanged (24 zeros)                        exit 0 OK | AGREES with claimed count 24
+n5 axial charges changed (count changes)       exit 2 OK | MISMATCH: file claims 24, independent count is 6
+ALL CASES BEHAVED
+[exit status 0]
+
+$ python3 tests/test_verifier_rejects.py
+  8 zero boxes verified (0.1s)
+rejected as expected (one zero removed): cannot resolve box near [0.9207102230579677, 0.9207102230579677, 1.1585795538840
+rejected as expected (one zero duplicated): enclosures 0, 9 overlap
+rejected as expected (wrong Morse index): index mismatch 2 vs 1
+rejected as expected (centre charge changed to 1/32): Krawczyk failed for {'box': [[0.4408546875, 1.2628078125, 1.2628078125], [0.4690
+ALL NEGATIVE CONTROLS PASSED
+[exit status 0]
+
+$ python3 tests/test_verifier_rejects_O.py
+python    control (unchanged certificate): accepted OK
+python    one zero removed                 rejected OK | RuntimeError: cannot resolve box near [0.9207102230579677, 0.920710223
+python    one zero duplicated              rejected OK | VerificationError: enclosures 0, 9 overlap
+python    wrong Morse index                rejected OK | VerificationError: index mismatch 2 vs 1
+python    centre charge changed to 1/32    rejected OK | VerificationError: Krawczyk failed for {'box': [[0.4408546875, 1.26280
+python    claimed count one too high       rejected OK | VerificationError: certificate claims 10 zeros but 9 boxes were verifi
+python    zero box squeezed to a plane     rejected OK | VerificationError: Krawczyk failed for {'box': [[0.46903593750000006, 
+python -O control (unchanged certificate): accepted OK
+python -O one zero removed                 rejected OK | RuntimeError: cannot resolve box near [0.9207102230579677, 0.920710223
+python -O one zero duplicated              rejected OK | VerificationError: enclosures 0, 9 overlap
+python -O wrong Morse index                rejected OK | VerificationError: index mismatch 2 vs 1
+python -O centre charge changed to 1/32    rejected OK | VerificationError: Krawczyk failed for {'box': [[0.4408546875, 1.26280
+python -O claimed count one too high       rejected OK | VerificationError: certificate claims 10 zeros but 9 boxes were verifi
+python -O zero box squeezed to a plane     rejected OK | VerificationError: Krawczyk failed for {'box': [[0.46903593750000006, 
+ALL NEGATIVE CONTROLS PASSED UNDER -O
+[exit status 0]
+
+$ python3 tests/test_ia.py
+violations: 0
+[exit status 0]
+
+$ python3 tests/test_known.py
+triangle {'n': 4, 'm1': 1, 'm2': 3, 'other': 0, 'morse_ok': True, 'min_eig': 1.3797663759519563}
+triangle+centre q=0.01 {'n': 3, 'm1': 0, 'm2': 3, 'other': 0, 'morse_ok': True, 'min_eig': 2.7544532516586804}
+triangle+centre q=0.1 {'n': 3, 'm1': 0, 'm2': 3, 'other': 0, 'morse_ok': True, 'min_eig': 5.795517262904303}
+triangle+centre q=0.5 {'n': 3, 'm1': 0, 'm2': 3, 'other': 0, 'morse_ok': True, 'min_eig': 11.154483349486206}
+triangle+centre q=1 {'n': 3, 'm1': 0, 'm2': 3, 'other': 0, 'morse_ok': True, 'min_eig': 16.06376110097635}
+ABK eps=0.166667 {'n': 24, 'm1': 10, 'm2': 14, 'other': 0, 'morse_ok': True, 'min_eig': 0.004886664744461741}
+ABK eps=0.1 {'n': 24, 'm1': 10, 'm2': 14, 'other': 0, 'morse_ok': True, 'min_eig': 0.001989944274829811}
+[exit status 0]
+
+$ python3 -O verify_arb.py certificates/n4-eleven-short.json certificates/n4-eleven-jet.json certificates/n4-second-family.json
+certificates/n4-eleven-short.json
+  11 zero boxes verified (0.0s)
+  completeness: 47145 boxes {'natural': 1269, 'centred': 22114, 'dominance': 87, 'inside': 103} (5.5s)
+VERIFIED n4-eleven-short: exactly 11 zeros, all non-degenerate; index 1: 4, index 2: 7; m2-m1 = 3 = n-1: True
+certificates/n4-eleven-jet.json
+  11 zero boxes verified (0.0s)
+  completeness: 49247 boxes {'natural': 1164, 'centred': 23352, 'dominance': 81, 'inside': 27} (6.0s)
+VERIFIED n4-eleven-jet: exactly 11 zeros, all non-degenerate; index 1: 4, index 2: 7; m2-m1 = 3 = n-1: True
+certificates/n4-second-family.json
+  9 zero boxes verified (0.0s)
+  completeness: 28983 boxes {'natural': 1304, 'centred': 13029, 'dominance': 66, 'inside': 93} (3.4s)
+VERIFIED n4-second-family: exactly 9 zeros, all non-degenerate; index 1: 3, index 2: 6; m2-m1 = 3 = n-1: True
+[exit status 0]

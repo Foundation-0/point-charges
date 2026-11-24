@@ -1,0 +1,6 @@
+Hessian formula vs finite differences, max abs err: 2.049259806291559e-08
+third-derivative formula vs finite differences, max abs err: 9.642915310692501e-08
+||D^2|| at r=1: 2.0
+sampled max |D^3[v,v,.]| at r=1: 5.999995971658448 (bound 6)
+sampled max ||D^3[v,.,.]|| at r=1: 5.999998657219207 (bound 6)
+at v=n: 6.0 6.0
