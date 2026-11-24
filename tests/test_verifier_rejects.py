@@ -10,7 +10,7 @@ def rejects(cert, label):
         json.dump(cert, f)
     try:
         verify_arb.verify(f.name)
-    except (AssertionError, RuntimeError) as e:
+    except (verify_arb.VerificationError, RuntimeError) as e:
         print('rejected as expected (%s): %s' % (label, str(e)[:80]))
         return True
     finally:

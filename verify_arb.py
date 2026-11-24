@@ -19,6 +19,15 @@ from flint import arb, fmpq, ctx
 ctx.prec = 160
 
 
+class VerificationError(Exception):
+    """A proof step failed. Raised explicitly, so it is not removed by python -O (unlike assert)."""
+
+
+def require(condition, message):
+    if not condition:
+        raise VerificationError(message)
+
+
 def Q(x):
     f = Fraction(x) if not isinstance(x, str) else Fraction(x)
     return fmpq(f.numerator, f.denominator)
@@ -38,8 +47,13 @@ def sq(x):
 
 class Config:
     def __init__(self, sites, charges):
-        self.a = [[Q(c) for c in p] for p in sites]
-        self.q = [Q(c) for c in charges]
+        require(type(sites) is list and type(charges) is list, 'sites and charges must be lists')
+        require(len(sites) == len(charges) and len(charges) >= 1, 'sites and charges must be non-empty and same length')
+        for p in sites:
+            require(type(p) is list and len(p) == 3, 'each site must be a 3-element list')
+        self.a = [[_safe_Q(c, 'site coordinate') for c in p] for p in sites]
+        self.q = [_safe_Q(c, 'charge') for c in charges]
+        require(all(c > 0 for c in self.q), 'all charges must be strictly positive')
         self.aa = [[arb(c) for c in p] for p in self.a]
         self.qa = [arb(c) for c in self.q]
         self.n = len(self.q)
@@ -170,14 +184,14 @@ def morse_index(cfg, lo, hi):
 
 
 def verify(path):
-    cert = json.load(open(path))
+    cert = _load_cert_json(path)
     cfg = Config(cert['sites'], cert['charges'])
     t0 = time.time()
     boxes = []
     for z in cert['zeros']:
         lo = [Q(x) for x in z['box'][0]]; hi = [Q(x) for x in z['box'][1]]
         ok, K = krawczyk(cfg, lo, hi)
-        assert ok, 'Krawczyk failed for %s' % z
+        require(ok, 'Krawczyk failed for %s' % z)
         # Every zero in a box X lies in K(X); iterate X <- X cap K(X) (rounded outward)
         # to get our own tight enclosure E of the unique zero of the box.
         elo, ehi = lo, hi
@@ -187,18 +201,18 @@ def verify(path):
                 break
             nlo = [max(elo[k], Q(_dn(K[k]))) for k in range(3)]
             nhi = [min(ehi[k], Q(_up(K[k]))) for k in range(3)]
-            assert all(nlo[k] <= nhi[k] for k in range(3)), 'empty intersection: no zero?'
+            require(all(nlo[k] <= nhi[k] for k in range(3)), 'empty intersection: no zero?')
             if nlo == elo and nhi == ehi:
                 break
             elo, ehi = nlo, nhi
         idx = morse_index(cfg, elo, ehi)
-        assert idx == z['index'], 'index mismatch %s vs %s' % (idx, z['index'])
+        require(idx == z['index'], 'index mismatch %s vs %s' % (idx, z['index']))
         boxes.append((lo, hi, elo, ehi, idx))
     # distinct zeros: the enclosures are pairwise disjoint
     for i in range(len(boxes)):
         for j in range(i + 1, len(boxes)):
             e1, e2 = boxes[i], boxes[j]
-            assert any(e1[3][k] < e2[2][k] or e2[3][k] < e1[2][k] for k in range(3)), 'enclosures %d, %d overlap' % (i, j)
+            require(any(e1[3][k] < e2[2][k] or e2[3][k] < e1[2][k] for k in range(3)), 'enclosures %d, %d overlap' % (i, j))
     print('  %d zero boxes verified (%.1fs)' % (len(boxes), time.time() - t0), flush=True)
     # completeness
     import math
@@ -237,12 +251,12 @@ def verify(path):
         m = (lo[k] + hi[k]) / 2
         hi1 = list(hi); hi1[k] = m; lo2 = list(lo); lo2[k] = m
         stack.append((lo, hi1)); stack.append((lo2, hi))
+    require(len(boxes) == cert['count'], 'certificate claims %s zeros but %d boxes were verified' % (cert['count'], len(boxes)))
     idx = [b[4] for b in boxes]
     m1, m2 = idx.count(1), idx.count(2)
     print('  completeness: %d boxes %s (%.1fs)' % (nbox, leaves, time.time() - t0))
     print('VERIFIED %s: exactly %d zeros, all non-degenerate; index 1: %d, index 2: %d; m2-m1 = %d = n-1: %s'
           % (cert['name'], len(boxes), m1, m2, m2 - m1, m2 - m1 == cfg.n - 1))
-    assert len(boxes) == cert['count']
     return len(boxes), m1, m2
 
 
@@ -254,6 +268,52 @@ def _dn(b):
 def _up(b):
     import math
     return math.nextafter(float(b.upper()), math.inf)
+
+
+def _reject_dup_keys(pairs):
+    out = {}
+    for k, v in pairs:
+        require(k not in out, 'duplicate JSON key: %r' % (k,))
+        out[k] = v
+    return out
+
+
+def _reject_nonfinite(token):
+    raise VerificationError('non-finite JSON constant forbidden: %r' % (token,))
+
+
+def _safe_Q(x, label):
+    require(type(x) is not bool, 'bool forbidden in %s' % label)
+    try:
+        return Q(x)
+    except (ValueError, TypeError, OverflowError) as exc:
+        raise VerificationError('invalid numeric %s: %s' % (label, exc)) from exc
+
+
+def _load_cert_json(path):
+    try:
+        with open(path, 'r', encoding='utf-8') as f:
+            cert = json.load(f, object_pairs_hook=_reject_dup_keys, parse_constant=_reject_nonfinite)
+    except VerificationError:
+        raise
+    except (OSError, UnicodeDecodeError, json.JSONDecodeError, RecursionError, ValueError) as exc:
+        raise VerificationError('failed to load certificate JSON: %s' % exc) from exc
+    require(type(cert) is dict, 'certificate root must be a JSON object')
+    for key in ('name', 'sites', 'charges', 'zeros', 'count'):
+        require(key in cert, 'certificate missing required key: %s' % key)
+    require(type(cert['name']) is str, 'certificate name must be str')
+    require(type(cert['count']) is int and cert['count'] >= 0, 'certificate count must be a non-negative int')
+    require(type(cert['zeros']) is list, 'certificate zeros must be a list')
+    for z in cert['zeros']:
+        require(type(z) is dict and 'box' in z and 'index' in z, 'each zero entry must be a dict with box and index')
+        require(type(z['index']) is int, 'zero Morse index must be exact int')
+        box = z['box']
+        require(type(box) is list and len(box) == 2, 'zero box must be [lo, hi]')
+        for end in box:
+            require(type(end) is list and len(end) == 3, 'box bound must be a 3-element list')
+        for k in range(3):
+            require(_safe_Q(box[0][k], 'box bound') <= _safe_Q(box[1][k], 'box bound'), 'inverted zero box bound at axis %d' % k)
+    return cert
 
 
 if __name__ == '__main__':
