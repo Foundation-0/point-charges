@@ -1,0 +1,6 @@
+name = "PointChargesExactCert"
+version = "0.1.0"
+defaultTargets = ["PointChargesExactCert"]
+
+[[lean_lib]]
+name = "PointChargesExactCert"
