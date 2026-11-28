@@ -78,6 +78,11 @@ and passes cold kernel replay via `leanchecker --fresh` (exit code `0`).
    span a rational volume, `t14` proves $\sqrt{3} \notin \mathbb{Q}$ and `t21` certifies strict $E_2$
    and bracketed $E_1$ dominance of an exact $S^2(\mathbb{Q})$ near-tetrahedron over the equatorial
    square (reduced summary values $E_2 = 83825/36864$ vs. $5/2$ recorded in `point_charges_lean_cert.json`).
+3. **Verification Receipts Present in This Tree:** The checks that this directory's commands replay
+   are the live Lean `4.36.0` + `AxiomAudit.lean` + `leanchecker --fresh` run (`--check`), the offline
+   `--check --offline` and `--standalone` certificate comparisons, and the `test_point_charges_lean_cert.py`
+   suite (`7 / 7 OK`, including its AST-purity and tamper negative controls). External mutation-runner
+   kill counts are outside this package's claims; the in-tree test suite is the mutation-style evidence here.
 
 ## Reproduction & Verification Commands
 
